@@ -103,6 +103,8 @@
 		7577857A1BC5438900632BCE /* Go2Study */ = {
 			isa = PBXGroup;
 			children = (
+				757785B21BC543F100632BCE /* View Controllers */,
+				757785B11BC543EB00632BCE /* Models */,
 				7577857E1BC5438900632BCE /* AppDelegate.h */,
 				7577857F1BC5438900632BCE /* AppDelegate.m */,
 				757785811BC5438900632BCE /* ViewController.h */,
@@ -141,6 +143,20 @@
 				757785A51BC5438900632BCE /* Info.plist */,
 			);
 			path = Go2StudyUITests;
+			sourceTree = "<group>";
+		};
+		757785B11BC543EB00632BCE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		757785B21BC543F100632BCE /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -418,6 +434,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
 				INFOPLIST_FILE = Go2Study/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = lol.go2study.Go2Study;
@@ -429,6 +446,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
 				INFOPLIST_FILE = Go2Study/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = lol.go2study.Go2Study;
