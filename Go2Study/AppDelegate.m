@@ -46,6 +46,20 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(nonnull NSURL *)url options:(nonnull NSDictionary<NSString *,id> *)options {
     if ([[url scheme] isEqualToString:@"go2study"]) {
+        NSArray *URLComponents = [[url fragment] componentsSeparatedByString:@"&"];
+        NSMutableDictionary *URLParameters = [[NSMutableDictionary alloc] init];
+        
+        for (NSString *keyValuePair in URLComponents) {
+            NSArray *pairComponents = [keyValuePair componentsSeparatedByString:@"="];
+            NSString *key = [[pairComponents firstObject] stringByRemovingPercentEncoding];
+            NSString *value = [[pairComponents lastObject] stringByRemovingPercentEncoding];
+            
+            [URLParameters setObject:value forKey:key];
+        }
+        
+        // !TODO: This needs to be stored in the keychain for security
+        [[NSUserDefaults standardUserDefaults] setObject:[URLParameters objectForKey:@"access_token"] forKey:@"fhict-access-token"];
+
         return YES;
     }
     
