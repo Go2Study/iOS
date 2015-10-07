@@ -1,0 +1,889 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		149AD8085D54A3B00089752EDBA881E2 /* NXOAuth2Request.h in Headers */ = {isa = PBXBuildFile; fileRef = 62FF5176750BEAC429BC9C36C0E0FF98 /* NXOAuth2Request.h */; };
+		2B84F47DB1A5E9C15680AB6C221E165E /* NXOAuth2.h in Headers */ = {isa = PBXBuildFile; fileRef = 002A3956791088A59B94415B8C9841FB /* NXOAuth2.h */; };
+		2B89A10E53EFC953697A851AED4FED60 /* NXOAuth2Account.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D4BEC37BF67C465597CE0EDE48B447D /* NXOAuth2Account.h */; };
+		2E8100AEAE3BA9CB9594308D6524ED54 /* NSString+NXOAuth2.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FF985FF70588D915ECDB53545FEDAA /* NSString+NXOAuth2.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		38F89932A2FD517B681F11E1FD37132E /* NXOAuth2Connection.h in Headers */ = {isa = PBXBuildFile; fileRef = CA7578363251748A17497F51033FD73D /* NXOAuth2Connection.h */; };
+		3A7B53CC69452D975E3CBD1171478D2E /* NXOAuth2PostBodyStream.m in Sources */ = {isa = PBXBuildFile; fileRef = E539049E09D94ACF96A1EF3542D1E744 /* NXOAuth2PostBodyStream.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		42CB957B586D51E89B8DCFEDBB6B404E /* NSURL+NXOAuth2.m in Sources */ = {isa = PBXBuildFile; fileRef = 270C462014835BD652FE07B02EA49A8C /* NSURL+NXOAuth2.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		46C45A1DA3A51FAA9A85B71B10BD4B3C /* NXOAuth2FileStreamWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E90A958845F61E6623E505ACD8D0269 /* NXOAuth2FileStreamWrapper.h */; };
+		4B97332351778ED9EAC7B58757164CAE /* NSString+NXOAuth2.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F42EFC50CCEEF0269D9288230F18B29 /* NSString+NXOAuth2.h */; };
+		4D385ADAC95626E8AF904206BD89C392 /* NXOAuth2TrustDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E5F298E054562E7D41B9CEF72A90AD1 /* NXOAuth2TrustDelegate.h */; };
+		564E3696EC6F03E8E89D161BD582FF96 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 791C4AA3B69EDF18B63284E65DF186FE /* Foundation.framework */; };
+		5784EDB0546257D589E51219A79FEE97 /* NXOAuth2Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 889BB4A37BA1A5E7060D887009FCDEC6 /* NXOAuth2Connection.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		5CB84D6049C08C1B79D247A7FE3FF14F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 791C4AA3B69EDF18B63284E65DF186FE /* Foundation.framework */; };
+		706F981BA222FC46ECB85C961F13ABF9 /* NXOAuth2Account+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 3318D16C45923B0A8C2464794C3799D4 /* NXOAuth2Account+Private.h */; };
+		76F6AF463AB2EDE2BCCD27C91BC458D6 /* NXOAuth2Client.m in Sources */ = {isa = PBXBuildFile; fileRef = D3CBDD8960D452FEC051B6E9ABCB8BFC /* NXOAuth2Client.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		7E52E7793EBAA5026BF45E531B768CC4 /* Pods-Go2Study-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F1D7B1BC987622DBB9E8AAB4F4D9750 /* Pods-Go2Study-dummy.m */; };
+		7ED0168BC55F6297259BB75901C82776 /* NXOAuth2Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 481558FCE83CB968769F9899C697B3AD /* NXOAuth2Constants.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		81679669E3FF46BE04DC848879AF50B1 /* NXOAuth2Account.m in Sources */ = {isa = PBXBuildFile; fileRef = DBC4DC8E1416A338AAE722B7C87BB352 /* NXOAuth2Account.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		8670D182BFE07D4F0650E9C6EEAB6322 /* NXOAuth2Constants.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CEA1AD36C1C06BE6CA58E0671AEBB04 /* NXOAuth2Constants.h */; };
+		87D44398FABC90FF6B80E67F4F28A026 /* NXOAuth2PostBodyPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A25F87D74186C9C6AB5B83D3C958C9 /* NXOAuth2PostBodyPart.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		93E8AC39D3E2B3D98D814310F5CF7585 /* NSData+NXOAuth2.m in Sources */ = {isa = PBXBuildFile; fileRef = C4366E3D87691A10BB83C216C50E1303 /* NSData+NXOAuth2.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		97B94537C852EAD33408A5FDFFDE8375 /* NXOAuth2AccountStore.h in Headers */ = {isa = PBXBuildFile; fileRef = D57DF3269A2D146B52A35DB70229153A /* NXOAuth2AccountStore.h */; };
+		9A4EF9E829BDC40A1AA2CD52BB1113C2 /* NXOAuth2PostBodyStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BF8E54CB501D90949DCAF5CE6E0E189 /* NXOAuth2PostBodyStream.h */; };
+		A04F3A899AAF729AA7A8ED60D4A22470 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A35ADB0982077DBB295C1ED0D46225A /* Security.framework */; };
+		A3A5A8D6DE17BA419E5883BC0D431128 /* NXOAuth2Client-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 15697943E6B8A31282F0EDAC529B9481 /* NXOAuth2Client-dummy.m */; };
+		A72F4376A6103350CD0CC6B5F186B65F /* NXOAuth2ClientDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = B78C962D411E7C37E6CD8A253D0B4D0B /* NXOAuth2ClientDelegate.h */; };
+		A8C099DD4DE2FDC07F7E052752F7B7F3 /* NSData+NXOAuth2.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C23CEEB26ECDF3061D5BCF72862EB91 /* NSData+NXOAuth2.h */; };
+		ABAEBA003366B91881EC00B62FE207C0 /* NXOAuth2ConnectionDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 994B557F6E21611D6B772689C4DF7091 /* NXOAuth2ConnectionDelegate.h */; };
+		B704AA6DD47C21951DBD0FF8AA35A42E /* NSURL+NXOAuth2.h in Headers */ = {isa = PBXBuildFile; fileRef = E3D666040DA751F45AE1E07D673373C1 /* NSURL+NXOAuth2.h */; };
+		B9070BB3FF002D3F51AEB9409E2700AE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 791C4AA3B69EDF18B63284E65DF186FE /* Foundation.framework */; };
+		BAFB2955438D0FE8CC3F6D00DC9D83AB /* NXOAuth2AccessToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 93CF6E30507F514EC244D6D83F37C3F9 /* NXOAuth2AccessToken.h */; };
+		BE7330E53456B3DCA6FCB9BF5508AD8D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 791C4AA3B69EDF18B63284E65DF186FE /* Foundation.framework */; };
+		BFDCEEFEE63B134EA696B821A54B4E59 /* NXOAuth2PostBodyPart.h in Headers */ = {isa = PBXBuildFile; fileRef = EBA91D2FA065D8A383E63C2FB5C8E370 /* NXOAuth2PostBodyPart.h */; };
+		C62CC19642830E1994D83221E6089ABD /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E776EE50EF0E45629627B36DC0CD69C9 /* Pods-dummy.m */; };
+		D2C727BFE923F91F8D0BE1AEB750087A /* Pods-Go2StudyTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F199BC2B6D27C475C4ACDF8D173AE5 /* Pods-Go2StudyTests-dummy.m */; };
+		E49D9B5879D5E51D0B0FAEE4491FE062 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 791C4AA3B69EDF18B63284E65DF186FE /* Foundation.framework */; };
+		E4F34D4DA9186C09BB85E80D77D65372 /* NXOAuth2AccountStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E396ED202EBF1B1D8BA9CD6605B03D1 /* NXOAuth2AccountStore.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		E7FA9A4313177B1B422D30D5C31CCB8D /* NXOAuth2FileStreamWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 639089471177BD91A46F47693BA521EE /* NXOAuth2FileStreamWrapper.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		EA73D8CE67DC371E9BFBF8E07F0F981A /* NXOAuth2Client.h in Headers */ = {isa = PBXBuildFile; fileRef = C48D48FB19695C08DCB2956581E939C7 /* NXOAuth2Client.h */; };
+		F89649D54DBDB52F59DDCD18682924CD /* NXOAuth2Request.m in Sources */ = {isa = PBXBuildFile; fileRef = AFCBC11D81310080EDEB2C4F8DB61F50 /* NXOAuth2Request.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		FB328E2CDF3574C8C4AA2D48C0457380 /* NXOAuth2AccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B49D3BD6C55700C18C52FBA52D4B69 /* NXOAuth2AccessToken.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		FCD2282E728AB4F4C2554EBEE9054193 /* Pods-Go2StudyUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 355E9F03E3416F28973899FE19712DDB /* Pods-Go2StudyUITests-dummy.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2FCAB0A15F9BC7E7D14777ED5F7FC833 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 90178295C4C9DEEB9161586FFB48F724;
+			remoteInfo = NXOAuth2Client;
+		};
+		69777900DCC9FC39C4E744C728F8312B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 90178295C4C9DEEB9161586FFB48F724;
+			remoteInfo = NXOAuth2Client;
+		};
+		A4CECEF99996EFA3FEE96755515B46BE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 90178295C4C9DEEB9161586FFB48F724;
+			remoteInfo = NXOAuth2Client;
+		};
+		ED25CE59101AB87AAB74E113256356B5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 90178295C4C9DEEB9161586FFB48F724;
+			remoteInfo = NXOAuth2Client;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		001487858B1E99A1DD406DD4376007E0 /* Pods-Go2StudyTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Go2StudyTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		002A3956791088A59B94415B8C9841FB /* NXOAuth2.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2.h; path = Sources/OAuth2Client/NXOAuth2.h; sourceTree = "<group>"; };
+		0582B129241BCC2F60BBA4A805178BF5 /* NXOAuth2Client.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = NXOAuth2Client.xcconfig; sourceTree = "<group>"; };
+		05DC58FE5752BFF58BF3028DE5B6BA30 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		08151E34B64BCC672D39735CD1ADBA71 /* Pods-Go2StudyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Go2StudyTests.release.xcconfig"; sourceTree = "<group>"; };
+		0CEA1AD36C1C06BE6CA58E0671AEBB04 /* NXOAuth2Constants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2Constants.h; path = Sources/OAuth2Client/NXOAuth2Constants.h; sourceTree = "<group>"; };
+		15697943E6B8A31282F0EDAC529B9481 /* NXOAuth2Client-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NXOAuth2Client-dummy.m"; sourceTree = "<group>"; };
+		17A25F87D74186C9C6AB5B83D3C958C9 /* NXOAuth2PostBodyPart.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2PostBodyPart.m; path = Sources/OAuth2Client/NXOAuth2PostBodyPart.m; sourceTree = "<group>"; };
+		1C23CEEB26ECDF3061D5BCF72862EB91 /* NSData+NXOAuth2.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSData+NXOAuth2.h"; path = "Sources/NSData+NXOAuth2.h"; sourceTree = "<group>"; };
+		20F199BC2B6D27C475C4ACDF8D173AE5 /* Pods-Go2StudyTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Go2StudyTests-dummy.m"; sourceTree = "<group>"; };
+		24B49D3BD6C55700C18C52FBA52D4B69 /* NXOAuth2AccessToken.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2AccessToken.m; path = Sources/OAuth2Client/NXOAuth2AccessToken.m; sourceTree = "<group>"; };
+		270C462014835BD652FE07B02EA49A8C /* NSURL+NXOAuth2.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSURL+NXOAuth2.m"; path = "Sources/NSURL+NXOAuth2.m"; sourceTree = "<group>"; };
+		27DB32EED223FCE5BE8C5D5F8C6F2851 /* Pods-Go2StudyTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Go2StudyTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		29853EBC977C77691624B5600FF2ABC9 /* Pods-Go2Study-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Go2Study-resources.sh"; sourceTree = "<group>"; };
+		2F1D7B1BC987622DBB9E8AAB4F4D9750 /* Pods-Go2Study-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Go2Study-dummy.m"; sourceTree = "<group>"; };
+		2F47B682FA05EAE08DDD7D50FDB56C82 /* libPods-Go2Study.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Go2Study.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3318D16C45923B0A8C2464794C3799D4 /* NXOAuth2Account+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NXOAuth2Account+Private.h"; sourceTree = "<group>"; };
+		355E9F03E3416F28973899FE19712DDB /* Pods-Go2StudyUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Go2StudyUITests-dummy.m"; sourceTree = "<group>"; };
+		3CF1ABCC18964122C65F700753E298A4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.debug.xcconfig; sourceTree = "<group>"; };
+		47C0EE98AD500ADCE6A1E388F5BF0EC6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.release.xcconfig; sourceTree = "<group>"; };
+		481558FCE83CB968769F9899C697B3AD /* NXOAuth2Constants.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2Constants.m; path = Sources/OAuth2Client/NXOAuth2Constants.m; sourceTree = "<group>"; };
+		4E90A958845F61E6623E505ACD8D0269 /* NXOAuth2FileStreamWrapper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2FileStreamWrapper.h; path = Sources/OAuth2Client/NXOAuth2FileStreamWrapper.h; sourceTree = "<group>"; };
+		5876CCC7B58443B0D6A5C0DEAFE06995 /* Pods-Go2StudyUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Go2StudyUITests-resources.sh"; sourceTree = "<group>"; };
+		5D4BEC37BF67C465597CE0EDE48B447D /* NXOAuth2Account.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2Account.h; path = Sources/OAuth2Client/NXOAuth2Account.h; sourceTree = "<group>"; };
+		62FF5176750BEAC429BC9C36C0E0FF98 /* NXOAuth2Request.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2Request.h; path = Sources/OAuth2Client/NXOAuth2Request.h; sourceTree = "<group>"; };
+		639089471177BD91A46F47693BA521EE /* NXOAuth2FileStreamWrapper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2FileStreamWrapper.m; path = Sources/OAuth2Client/NXOAuth2FileStreamWrapper.m; sourceTree = "<group>"; };
+		791C4AA3B69EDF18B63284E65DF186FE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		7BF8E54CB501D90949DCAF5CE6E0E189 /* NXOAuth2PostBodyStream.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2PostBodyStream.h; path = Sources/OAuth2Client/NXOAuth2PostBodyStream.h; sourceTree = "<group>"; };
+		7F42EFC50CCEEF0269D9288230F18B29 /* NSString+NXOAuth2.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+NXOAuth2.h"; path = "Sources/NSString+NXOAuth2.h"; sourceTree = "<group>"; };
+		889BB4A37BA1A5E7060D887009FCDEC6 /* NXOAuth2Connection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2Connection.m; path = Sources/OAuth2Client/NXOAuth2Connection.m; sourceTree = "<group>"; };
+		89277DC465CEF08161A756BCFC65A21F /* Pods-Go2StudyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Go2StudyUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8A35ADB0982077DBB295C1ED0D46225A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		8E396ED202EBF1B1D8BA9CD6605B03D1 /* NXOAuth2AccountStore.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2AccountStore.m; path = Sources/OAuth2Client/NXOAuth2AccountStore.m; sourceTree = "<group>"; };
+		90FF985FF70588D915ECDB53545FEDAA /* NSString+NXOAuth2.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+NXOAuth2.m"; path = "Sources/NSString+NXOAuth2.m"; sourceTree = "<group>"; };
+		93CF6E30507F514EC244D6D83F37C3F9 /* NXOAuth2AccessToken.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2AccessToken.h; path = Sources/OAuth2Client/NXOAuth2AccessToken.h; sourceTree = "<group>"; };
+		994B557F6E21611D6B772689C4DF7091 /* NXOAuth2ConnectionDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2ConnectionDelegate.h; path = Sources/OAuth2Client/NXOAuth2ConnectionDelegate.h; sourceTree = "<group>"; };
+		9B4AE67DFD0DA1417DEF8F3F473D6E89 /* Pods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-acknowledgements.markdown"; sourceTree = "<group>"; };
+		9E5F298E054562E7D41B9CEF72A90AD1 /* NXOAuth2TrustDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2TrustDelegate.h; path = Sources/OAuth2Client/NXOAuth2TrustDelegate.h; sourceTree = "<group>"; };
+		9E6806E82351479B3222B0CB480ED11F /* libPods-Go2StudyUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Go2StudyUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1363C42DF76750900BD30E4BDF23BB4 /* Pods-Go2Study.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Go2Study.release.xcconfig"; sourceTree = "<group>"; };
+		AFCBC11D81310080EDEB2C4F8DB61F50 /* NXOAuth2Request.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2Request.m; path = Sources/OAuth2Client/NXOAuth2Request.m; sourceTree = "<group>"; };
+		B56FB0779552AC6924DB6942553BC8A4 /* Pods-Go2Study.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Go2Study.debug.xcconfig"; sourceTree = "<group>"; };
+		B60345EDF4AC92C6B2F8A284C6433856 /* Pods-Go2Study-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Go2Study-acknowledgements.markdown"; sourceTree = "<group>"; };
+		B78C962D411E7C37E6CD8A253D0B4D0B /* NXOAuth2ClientDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2ClientDelegate.h; path = Sources/OAuth2Client/NXOAuth2ClientDelegate.h; sourceTree = "<group>"; };
+		B7F582AEEE6574A54A11B7E20146F4DE /* NXOAuth2Client-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NXOAuth2Client-prefix.pch"; sourceTree = "<group>"; };
+		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		C094D7C8C6D8C01B6D77A11B1BE74165 /* Pods-Go2StudyUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Go2StudyUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		C1FD84123F7E436AF9526F9D04D74A75 /* Pods-Go2StudyUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Go2StudyUITests-acknowledgements.plist"; sourceTree = "<group>"; };
+		C4366E3D87691A10BB83C216C50E1303 /* NSData+NXOAuth2.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSData+NXOAuth2.m"; path = "Sources/NSData+NXOAuth2.m"; sourceTree = "<group>"; };
+		C48D48FB19695C08DCB2956581E939C7 /* NXOAuth2Client.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2Client.h; path = Sources/OAuth2Client/NXOAuth2Client.h; sourceTree = "<group>"; };
+		C5DA5E54B70902471B94ECD03748A4A6 /* Pods-Go2StudyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Go2StudyTests.debug.xcconfig"; sourceTree = "<group>"; };
+		CA4A67332AF668A10B1840FCE016ADAA /* Pods-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-resources.sh"; sourceTree = "<group>"; };
+		CA7578363251748A17497F51033FD73D /* NXOAuth2Connection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2Connection.h; path = Sources/OAuth2Client/NXOAuth2Connection.h; sourceTree = "<group>"; };
+		D3CBDD8960D452FEC051B6E9ABCB8BFC /* NXOAuth2Client.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2Client.m; path = Sources/OAuth2Client/NXOAuth2Client.m; sourceTree = "<group>"; };
+		D57DF3269A2D146B52A35DB70229153A /* NXOAuth2AccountStore.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2AccountStore.h; path = Sources/OAuth2Client/NXOAuth2AccountStore.h; sourceTree = "<group>"; };
+		DBC4DC8E1416A338AAE722B7C87BB352 /* NXOAuth2Account.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2Account.m; path = Sources/OAuth2Client/NXOAuth2Account.m; sourceTree = "<group>"; };
+		DD663F31DE73098BE0A875D7A8B613DA /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
+		DDA44A3F7088F5B79BD67762D3A4CC3C /* Pods-Go2StudyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Go2StudyUITests.release.xcconfig"; sourceTree = "<group>"; };
+		E0C3139851362B6D869E6BD7BE0901F1 /* Pods-Go2StudyTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Go2StudyTests-resources.sh"; sourceTree = "<group>"; };
+		E3D666040DA751F45AE1E07D673373C1 /* NSURL+NXOAuth2.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSURL+NXOAuth2.h"; path = "Sources/NSURL+NXOAuth2.h"; sourceTree = "<group>"; };
+		E539049E09D94ACF96A1EF3542D1E744 /* NXOAuth2PostBodyStream.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2PostBodyStream.m; path = Sources/OAuth2Client/NXOAuth2PostBodyStream.m; sourceTree = "<group>"; };
+		E776EE50EF0E45629627B36DC0CD69C9 /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
+		E7CF6BAD61C09F6ACB7633C6FCE4C70D /* Pods-Go2Study-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Go2Study-acknowledgements.plist"; sourceTree = "<group>"; };
+		EBA91D2FA065D8A383E63C2FB5C8E370 /* NXOAuth2PostBodyPart.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2PostBodyPart.h; path = Sources/OAuth2Client/NXOAuth2PostBodyPart.h; sourceTree = "<group>"; };
+		F7F7FDFDCAAAABD6CC3451F5940DD572 /* NXOAuth2Client-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "NXOAuth2Client-Private.xcconfig"; sourceTree = "<group>"; };
+		FBA141AD0B990E474AED061CD6193A73 /* libPods-Go2StudyTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Go2StudyTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC77F008CE6DCB7530A9770566285EB3 /* libNXOAuth2Client.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNXOAuth2Client.a; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3781E5008A5204FA6777C2710E9D6A0B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E49D9B5879D5E51D0B0FAEE4491FE062 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		39B8DB4BE88FEE18B260855F5EED6560 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5CB84D6049C08C1B79D247A7FE3FF14F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9364D00B78030B0219E17FB5CA158E25 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				564E3696EC6F03E8E89D161BD582FF96 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AC471640B3D86696EF8AC981664EB338 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9070BB3FF002D3F51AEB9409E2700AE /* Foundation.framework in Frameworks */,
+				A04F3A899AAF729AA7A8ED60D4A22470 /* Security.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E7154DCF5F6314A4C37030B9A6E507C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE7330E53456B3DCA6FCB9BF5508AD8D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		000639E9B82BA3B4B68BE4561954E929 /* Pods-Go2StudyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C094D7C8C6D8C01B6D77A11B1BE74165 /* Pods-Go2StudyUITests-acknowledgements.markdown */,
+				C1FD84123F7E436AF9526F9D04D74A75 /* Pods-Go2StudyUITests-acknowledgements.plist */,
+				355E9F03E3416F28973899FE19712DDB /* Pods-Go2StudyUITests-dummy.m */,
+				5876CCC7B58443B0D6A5C0DEAFE06995 /* Pods-Go2StudyUITests-resources.sh */,
+				89277DC465CEF08161A756BCFC65A21F /* Pods-Go2StudyUITests.debug.xcconfig */,
+				DDA44A3F7088F5B79BD67762D3A4CC3C /* Pods-Go2StudyUITests.release.xcconfig */,
+			);
+			name = "Pods-Go2StudyUITests";
+			path = "Target Support Files/Pods-Go2StudyUITests";
+			sourceTree = "<group>";
+		};
+		3465B9D9957AA955034749DDBF22A3EA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				722871DC7C3F88D287A70CBC1F2D19D7 /* NXOAuth2Client */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		433CD3331B6C3787F473C941B61FC68F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B7DC042EB208E60004AB32538B40FA79 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		67A79F35F37948C27F3461CA36696806 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				0582B129241BCC2F60BBA4A805178BF5 /* NXOAuth2Client.xcconfig */,
+				F7F7FDFDCAAAABD6CC3451F5940DD572 /* NXOAuth2Client-Private.xcconfig */,
+				15697943E6B8A31282F0EDAC529B9481 /* NXOAuth2Client-dummy.m */,
+				B7F582AEEE6574A54A11B7E20146F4DE /* NXOAuth2Client-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/NXOAuth2Client";
+			sourceTree = "<group>";
+		};
+		7038C9401A0BB1E2E7AB71BC70130E95 /* Pods-Go2StudyTests */ = {
+			isa = PBXGroup;
+			children = (
+				001487858B1E99A1DD406DD4376007E0 /* Pods-Go2StudyTests-acknowledgements.markdown */,
+				27DB32EED223FCE5BE8C5D5F8C6F2851 /* Pods-Go2StudyTests-acknowledgements.plist */,
+				20F199BC2B6D27C475C4ACDF8D173AE5 /* Pods-Go2StudyTests-dummy.m */,
+				E0C3139851362B6D869E6BD7BE0901F1 /* Pods-Go2StudyTests-resources.sh */,
+				C5DA5E54B70902471B94ECD03748A4A6 /* Pods-Go2StudyTests.debug.xcconfig */,
+				08151E34B64BCC672D39735CD1ADBA71 /* Pods-Go2StudyTests.release.xcconfig */,
+			);
+			name = "Pods-Go2StudyTests";
+			path = "Target Support Files/Pods-Go2StudyTests";
+			sourceTree = "<group>";
+		};
+		722871DC7C3F88D287A70CBC1F2D19D7 /* NXOAuth2Client */ = {
+			isa = PBXGroup;
+			children = (
+				1C23CEEB26ECDF3061D5BCF72862EB91 /* NSData+NXOAuth2.h */,
+				C4366E3D87691A10BB83C216C50E1303 /* NSData+NXOAuth2.m */,
+				7F42EFC50CCEEF0269D9288230F18B29 /* NSString+NXOAuth2.h */,
+				90FF985FF70588D915ECDB53545FEDAA /* NSString+NXOAuth2.m */,
+				E3D666040DA751F45AE1E07D673373C1 /* NSURL+NXOAuth2.h */,
+				270C462014835BD652FE07B02EA49A8C /* NSURL+NXOAuth2.m */,
+				002A3956791088A59B94415B8C9841FB /* NXOAuth2.h */,
+				93CF6E30507F514EC244D6D83F37C3F9 /* NXOAuth2AccessToken.h */,
+				24B49D3BD6C55700C18C52FBA52D4B69 /* NXOAuth2AccessToken.m */,
+				5D4BEC37BF67C465597CE0EDE48B447D /* NXOAuth2Account.h */,
+				DBC4DC8E1416A338AAE722B7C87BB352 /* NXOAuth2Account.m */,
+				3318D16C45923B0A8C2464794C3799D4 /* NXOAuth2Account+Private.h */,
+				D57DF3269A2D146B52A35DB70229153A /* NXOAuth2AccountStore.h */,
+				8E396ED202EBF1B1D8BA9CD6605B03D1 /* NXOAuth2AccountStore.m */,
+				C48D48FB19695C08DCB2956581E939C7 /* NXOAuth2Client.h */,
+				D3CBDD8960D452FEC051B6E9ABCB8BFC /* NXOAuth2Client.m */,
+				B78C962D411E7C37E6CD8A253D0B4D0B /* NXOAuth2ClientDelegate.h */,
+				CA7578363251748A17497F51033FD73D /* NXOAuth2Connection.h */,
+				889BB4A37BA1A5E7060D887009FCDEC6 /* NXOAuth2Connection.m */,
+				994B557F6E21611D6B772689C4DF7091 /* NXOAuth2ConnectionDelegate.h */,
+				0CEA1AD36C1C06BE6CA58E0671AEBB04 /* NXOAuth2Constants.h */,
+				481558FCE83CB968769F9899C697B3AD /* NXOAuth2Constants.m */,
+				4E90A958845F61E6623E505ACD8D0269 /* NXOAuth2FileStreamWrapper.h */,
+				639089471177BD91A46F47693BA521EE /* NXOAuth2FileStreamWrapper.m */,
+				EBA91D2FA065D8A383E63C2FB5C8E370 /* NXOAuth2PostBodyPart.h */,
+				17A25F87D74186C9C6AB5B83D3C958C9 /* NXOAuth2PostBodyPart.m */,
+				7BF8E54CB501D90949DCAF5CE6E0E189 /* NXOAuth2PostBodyStream.h */,
+				E539049E09D94ACF96A1EF3542D1E744 /* NXOAuth2PostBodyStream.m */,
+				62FF5176750BEAC429BC9C36C0E0FF98 /* NXOAuth2Request.h */,
+				AFCBC11D81310080EDEB2C4F8DB61F50 /* NXOAuth2Request.m */,
+				9E5F298E054562E7D41B9CEF72A90AD1 /* NXOAuth2TrustDelegate.h */,
+				67A79F35F37948C27F3461CA36696806 /* Support Files */,
+			);
+			path = NXOAuth2Client;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
+				433CD3331B6C3787F473C941B61FC68F /* Frameworks */,
+				3465B9D9957AA955034749DDBF22A3EA /* Pods */,
+				CCA510CFBEA2D207524CDA0D73C3B561 /* Products */,
+				D1B2B3EB26FDA67C40DFCEDBC4F33FC2 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		8A0A7585F4519718B71FAA0DD1F6E617 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9B4AE67DFD0DA1417DEF8F3F473D6E89 /* Pods-acknowledgements.markdown */,
+				DD663F31DE73098BE0A875D7A8B613DA /* Pods-acknowledgements.plist */,
+				E776EE50EF0E45629627B36DC0CD69C9 /* Pods-dummy.m */,
+				CA4A67332AF668A10B1840FCE016ADAA /* Pods-resources.sh */,
+				3CF1ABCC18964122C65F700753E298A4 /* Pods.debug.xcconfig */,
+				47C0EE98AD500ADCE6A1E388F5BF0EC6 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			path = "Target Support Files/Pods";
+			sourceTree = "<group>";
+		};
+		B7DC042EB208E60004AB32538B40FA79 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				791C4AA3B69EDF18B63284E65DF186FE /* Foundation.framework */,
+				8A35ADB0982077DBB295C1ED0D46225A /* Security.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		CCA510CFBEA2D207524CDA0D73C3B561 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FC77F008CE6DCB7530A9770566285EB3 /* libNXOAuth2Client.a */,
+				05DC58FE5752BFF58BF3028DE5B6BA30 /* libPods.a */,
+				2F47B682FA05EAE08DDD7D50FDB56C82 /* libPods-Go2Study.a */,
+				FBA141AD0B990E474AED061CD6193A73 /* libPods-Go2StudyTests.a */,
+				9E6806E82351479B3222B0CB480ED11F /* libPods-Go2StudyUITests.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D1B2B3EB26FDA67C40DFCEDBC4F33FC2 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				8A0A7585F4519718B71FAA0DD1F6E617 /* Pods */,
+				D34C2CEFB1AD5D0FC1F68F19FE499AB8 /* Pods-Go2Study */,
+				7038C9401A0BB1E2E7AB71BC70130E95 /* Pods-Go2StudyTests */,
+				000639E9B82BA3B4B68BE4561954E929 /* Pods-Go2StudyUITests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		D34C2CEFB1AD5D0FC1F68F19FE499AB8 /* Pods-Go2Study */ = {
+			isa = PBXGroup;
+			children = (
+				B60345EDF4AC92C6B2F8A284C6433856 /* Pods-Go2Study-acknowledgements.markdown */,
+				E7CF6BAD61C09F6ACB7633C6FCE4C70D /* Pods-Go2Study-acknowledgements.plist */,
+				2F1D7B1BC987622DBB9E8AAB4F4D9750 /* Pods-Go2Study-dummy.m */,
+				29853EBC977C77691624B5600FF2ABC9 /* Pods-Go2Study-resources.sh */,
+				B56FB0779552AC6924DB6942553BC8A4 /* Pods-Go2Study.debug.xcconfig */,
+				A1363C42DF76750900BD30E4BDF23BB4 /* Pods-Go2Study.release.xcconfig */,
+			);
+			name = "Pods-Go2Study";
+			path = "Target Support Files/Pods-Go2Study";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		3AE161677CAEC4C0B2CDEE49F45D761E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A8C099DD4DE2FDC07F7E052752F7B7F3 /* NSData+NXOAuth2.h in Headers */,
+				4B97332351778ED9EAC7B58757164CAE /* NSString+NXOAuth2.h in Headers */,
+				B704AA6DD47C21951DBD0FF8AA35A42E /* NSURL+NXOAuth2.h in Headers */,
+				2B84F47DB1A5E9C15680AB6C221E165E /* NXOAuth2.h in Headers */,
+				BAFB2955438D0FE8CC3F6D00DC9D83AB /* NXOAuth2AccessToken.h in Headers */,
+				706F981BA222FC46ECB85C961F13ABF9 /* NXOAuth2Account+Private.h in Headers */,
+				2B89A10E53EFC953697A851AED4FED60 /* NXOAuth2Account.h in Headers */,
+				97B94537C852EAD33408A5FDFFDE8375 /* NXOAuth2AccountStore.h in Headers */,
+				EA73D8CE67DC371E9BFBF8E07F0F981A /* NXOAuth2Client.h in Headers */,
+				A72F4376A6103350CD0CC6B5F186B65F /* NXOAuth2ClientDelegate.h in Headers */,
+				38F89932A2FD517B681F11E1FD37132E /* NXOAuth2Connection.h in Headers */,
+				ABAEBA003366B91881EC00B62FE207C0 /* NXOAuth2ConnectionDelegate.h in Headers */,
+				8670D182BFE07D4F0650E9C6EEAB6322 /* NXOAuth2Constants.h in Headers */,
+				46C45A1DA3A51FAA9A85B71B10BD4B3C /* NXOAuth2FileStreamWrapper.h in Headers */,
+				BFDCEEFEE63B134EA696B821A54B4E59 /* NXOAuth2PostBodyPart.h in Headers */,
+				9A4EF9E829BDC40A1AA2CD52BB1113C2 /* NXOAuth2PostBodyStream.h in Headers */,
+				149AD8085D54A3B00089752EDBA881E2 /* NXOAuth2Request.h in Headers */,
+				4D385ADAC95626E8AF904206BD89C392 /* NXOAuth2TrustDelegate.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		4657C2F06670F85EEE53D9768A479901 /* Pods-Go2StudyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD491AC45FE400E3DFE6349596CD3B5A /* Build configuration list for PBXNativeTarget "Pods-Go2StudyTests" */;
+			buildPhases = (
+				75316A125AE8E664CE4E504766F70E7B /* Sources */,
+				E7154DCF5F6314A4C37030B9A6E507C7 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				18B84D231A7052C90D3EE2952A890AC8 /* PBXTargetDependency */,
+			);
+			name = "Pods-Go2StudyTests";
+			productName = "Pods-Go2StudyTests";
+			productReference = FBA141AD0B990E474AED061CD6193A73 /* libPods-Go2StudyTests.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		83469DCC64A242F8A5B6B83CB7E13129 /* Pods-Go2StudyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AAB192AE9E4ACA7BA430924C53C92A2A /* Build configuration list for PBXNativeTarget "Pods-Go2StudyUITests" */;
+			buildPhases = (
+				05759D283F81B81396582D6FAA72A5D5 /* Sources */,
+				3781E5008A5204FA6777C2710E9D6A0B /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				99720FED8FCAF85D6792F8E5ABA51E01 /* PBXTargetDependency */,
+			);
+			name = "Pods-Go2StudyUITests";
+			productName = "Pods-Go2StudyUITests";
+			productReference = 9E6806E82351479B3222B0CB480ED11F /* libPods-Go2StudyUITests.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		90178295C4C9DEEB9161586FFB48F724 /* NXOAuth2Client */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 749A16215C9EC9660A2EFECC65242A30 /* Build configuration list for PBXNativeTarget "NXOAuth2Client" */;
+			buildPhases = (
+				3777F50F81038F82749919E1F6EBD076 /* Sources */,
+				AC471640B3D86696EF8AC981664EB338 /* Frameworks */,
+				3AE161677CAEC4C0B2CDEE49F45D761E /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NXOAuth2Client;
+			productName = NXOAuth2Client;
+			productReference = FC77F008CE6DCB7530A9770566285EB3 /* libNXOAuth2Client.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		CC739A36326E30B9752ECFB411778F2A /* Pods-Go2Study */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66CB0B3F3B5C0751FD06107AF151097F /* Build configuration list for PBXNativeTarget "Pods-Go2Study" */;
+			buildPhases = (
+				B36264E6EB3D456CE2D58507A2A5DB74 /* Sources */,
+				9364D00B78030B0219E17FB5CA158E25 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				45B594A4997A80543BFFE683EC0C26C3 /* PBXTargetDependency */,
+			);
+			name = "Pods-Go2Study";
+			productName = "Pods-Go2Study";
+			productReference = 2F47B682FA05EAE08DDD7D50FDB56C82 /* libPods-Go2Study.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		DE2A44888DF415E3A2A1D0AB9B33F1E7 /* Pods */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC15961C8B05FBADF343080049C25D01 /* Build configuration list for PBXNativeTarget "Pods" */;
+			buildPhases = (
+				EA42691054156816E40D8CFAA2AE8479 /* Sources */,
+				39B8DB4BE88FEE18B260855F5EED6560 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4F517F6F82311EABDD99CFDE933B3CC8 /* PBXTargetDependency */,
+			);
+			name = Pods;
+			productName = Pods;
+			productReference = 05DC58FE5752BFF58BF3028DE5B6BA30 /* libPods.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = CCA510CFBEA2D207524CDA0D73C3B561 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				90178295C4C9DEEB9161586FFB48F724 /* NXOAuth2Client */,
+				DE2A44888DF415E3A2A1D0AB9B33F1E7 /* Pods */,
+				CC739A36326E30B9752ECFB411778F2A /* Pods-Go2Study */,
+				4657C2F06670F85EEE53D9768A479901 /* Pods-Go2StudyTests */,
+				83469DCC64A242F8A5B6B83CB7E13129 /* Pods-Go2StudyUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		05759D283F81B81396582D6FAA72A5D5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FCD2282E728AB4F4C2554EBEE9054193 /* Pods-Go2StudyUITests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3777F50F81038F82749919E1F6EBD076 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93E8AC39D3E2B3D98D814310F5CF7585 /* NSData+NXOAuth2.m in Sources */,
+				2E8100AEAE3BA9CB9594308D6524ED54 /* NSString+NXOAuth2.m in Sources */,
+				42CB957B586D51E89B8DCFEDBB6B404E /* NSURL+NXOAuth2.m in Sources */,
+				FB328E2CDF3574C8C4AA2D48C0457380 /* NXOAuth2AccessToken.m in Sources */,
+				81679669E3FF46BE04DC848879AF50B1 /* NXOAuth2Account.m in Sources */,
+				E4F34D4DA9186C09BB85E80D77D65372 /* NXOAuth2AccountStore.m in Sources */,
+				A3A5A8D6DE17BA419E5883BC0D431128 /* NXOAuth2Client-dummy.m in Sources */,
+				76F6AF463AB2EDE2BCCD27C91BC458D6 /* NXOAuth2Client.m in Sources */,
+				5784EDB0546257D589E51219A79FEE97 /* NXOAuth2Connection.m in Sources */,
+				7ED0168BC55F6297259BB75901C82776 /* NXOAuth2Constants.m in Sources */,
+				E7FA9A4313177B1B422D30D5C31CCB8D /* NXOAuth2FileStreamWrapper.m in Sources */,
+				87D44398FABC90FF6B80E67F4F28A026 /* NXOAuth2PostBodyPart.m in Sources */,
+				3A7B53CC69452D975E3CBD1171478D2E /* NXOAuth2PostBodyStream.m in Sources */,
+				F89649D54DBDB52F59DDCD18682924CD /* NXOAuth2Request.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		75316A125AE8E664CE4E504766F70E7B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2C727BFE923F91F8D0BE1AEB750087A /* Pods-Go2StudyTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B36264E6EB3D456CE2D58507A2A5DB74 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E52E7793EBAA5026BF45E531B768CC4 /* Pods-Go2Study-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA42691054156816E40D8CFAA2AE8479 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C62CC19642830E1994D83221E6089ABD /* Pods-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		18B84D231A7052C90D3EE2952A890AC8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = NXOAuth2Client;
+			target = 90178295C4C9DEEB9161586FFB48F724 /* NXOAuth2Client */;
+			targetProxy = A4CECEF99996EFA3FEE96755515B46BE /* PBXContainerItemProxy */;
+		};
+		45B594A4997A80543BFFE683EC0C26C3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = NXOAuth2Client;
+			target = 90178295C4C9DEEB9161586FFB48F724 /* NXOAuth2Client */;
+			targetProxy = 69777900DCC9FC39C4E744C728F8312B /* PBXContainerItemProxy */;
+		};
+		4F517F6F82311EABDD99CFDE933B3CC8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = NXOAuth2Client;
+			target = 90178295C4C9DEEB9161586FFB48F724 /* NXOAuth2Client */;
+			targetProxy = ED25CE59101AB87AAB74E113256356B5 /* PBXContainerItemProxy */;
+		};
+		99720FED8FCAF85D6792F8E5ABA51E01 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = NXOAuth2Client;
+			target = 90178295C4C9DEEB9161586FFB48F724 /* NXOAuth2Client */;
+			targetProxy = 2FCAB0A15F9BC7E7D14777ED5F7FC833 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		072E41F5364AA436D0F3C885AD1C5EF4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B56FB0779552AC6924DB6942553BC8A4 /* Pods-Go2Study.debug.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		1170300201B0355E4313E33167789761 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 47C0EE98AD500ADCE6A1E388F5BF0EC6 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		54EC91010C161FD39695A96DBD5DB0CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DDA44A3F7088F5B79BD67762D3A4CC3C /* Pods-Go2StudyUITests.release.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		55883BEE9E2CE04A523C801CA1155953 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F7F7FDFDCAAAABD6CC3451F5940DD572 /* NXOAuth2Client-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/NXOAuth2Client/NXOAuth2Client-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		5CE5176205D06FF3FFE3DDDA9291E44B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				ONLY_ACTIVE_ARCH = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		672410584667A7247A13C9B0B2250238 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A1363C42DF76750900BD30E4BDF23BB4 /* Pods-Go2Study.release.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		74857149DC1E0D599B8A01A78349A926 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7D5E8D36CB43AC5B28B7C2C4B51B8445 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3CF1ABCC18964122C65F700753E298A4 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		AE5AB32ABABA5CAED587BF38DF6F9977 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 08151E34B64BCC672D39735CD1ADBA71 /* Pods-Go2StudyTests.release.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		C097F069F60558C7E5AD2119E4D20441 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F7F7FDFDCAAAABD6CC3451F5940DD572 /* NXOAuth2Client-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/NXOAuth2Client/NXOAuth2Client-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		CD61AC30988DF4B7792657D57F161E00 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 89277DC465CEF08161A756BCFC65A21F /* Pods-Go2StudyUITests.debug.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		F232E08916DE1B099B4E812C9C86E3D6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C5DA5E54B70902471B94ECD03748A4A6 /* Pods-Go2StudyTests.debug.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5CE5176205D06FF3FFE3DDDA9291E44B /* Debug */,
+				74857149DC1E0D599B8A01A78349A926 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66CB0B3F3B5C0751FD06107AF151097F /* Build configuration list for PBXNativeTarget "Pods-Go2Study" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				072E41F5364AA436D0F3C885AD1C5EF4 /* Debug */,
+				672410584667A7247A13C9B0B2250238 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		749A16215C9EC9660A2EFECC65242A30 /* Build configuration list for PBXNativeTarget "NXOAuth2Client" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C097F069F60558C7E5AD2119E4D20441 /* Debug */,
+				55883BEE9E2CE04A523C801CA1155953 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AAB192AE9E4ACA7BA430924C53C92A2A /* Build configuration list for PBXNativeTarget "Pods-Go2StudyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD61AC30988DF4B7792657D57F161E00 /* Debug */,
+				54EC91010C161FD39695A96DBD5DB0CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DD491AC45FE400E3DFE6349596CD3B5A /* Build configuration list for PBXNativeTarget "Pods-Go2StudyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F232E08916DE1B099B4E812C9C86E3D6 /* Debug */,
+				AE5AB32ABABA5CAED587BF38DF6F9977 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FC15961C8B05FBADF343080049C25D01 /* Build configuration list for PBXNativeTarget "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7D5E8D36CB43AC5B28B7C2C4B51B8445 /* Debug */,
+				1170300201B0355E4313E33167789761 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}
