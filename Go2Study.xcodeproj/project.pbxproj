@@ -10,13 +10,13 @@
 		02E418B79995834A8422B0F0 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE9193BC430C2A68B1C42366 /* libPods.a */; };
 		7577857D1BC5438900632BCE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7577857C1BC5438900632BCE /* main.m */; };
 		757785801BC5438900632BCE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7577857F1BC5438900632BCE /* AppDelegate.m */; };
-		757785831BC5438900632BCE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 757785821BC5438900632BCE /* ViewController.m */; };
 		757785861BC5438900632BCE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 757785841BC5438900632BCE /* Main.storyboard */; };
 		757785891BC5438900632BCE /* Go2Study.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 757785871BC5438900632BCE /* Go2Study.xcdatamodeld */; };
 		7577858B1BC5438900632BCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7577858A1BC5438900632BCE /* Assets.xcassets */; };
 		7577858E1BC5438900632BCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7577858C1BC5438900632BCE /* LaunchScreen.storyboard */; };
 		757785991BC5438900632BCE /* Go2StudyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 757785981BC5438900632BCE /* Go2StudyTests.m */; };
 		757785A41BC5438900632BCE /* Go2StudyUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 757785A31BC5438900632BCE /* Go2StudyUITests.m */; };
+		758946131BC5484800798BBD /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 758946121BC5484800798BBD /* LoginViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,8 +42,6 @@
 		7577857C1BC5438900632BCE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7577857E1BC5438900632BCE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7577857F1BC5438900632BCE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		757785811BC5438900632BCE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ../ViewController.h; sourceTree = "<group>"; };
-		757785821BC5438900632BCE /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ../ViewController.m; sourceTree = "<group>"; };
 		757785851BC5438900632BCE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		757785881BC5438900632BCE /* Go2Study.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Go2Study.xcdatamodel; sourceTree = "<group>"; };
 		7577858A1BC5438900632BCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -55,6 +53,8 @@
 		7577859F1BC5438900632BCE /* Go2StudyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Go2StudyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		757785A31BC5438900632BCE /* Go2StudyUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Go2StudyUITests.m; sourceTree = "<group>"; };
 		757785A51BC5438900632BCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		758946111BC5484800798BBD /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		758946121BC5484800798BBD /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		9FDB58F78090851B7EDB4AD1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		FE9193BC430C2A68B1C42366 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -160,8 +160,8 @@
 		757785B21BC543F100632BCE /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				757785811BC5438900632BCE /* ViewController.h */,
-				757785821BC5438900632BCE /* ViewController.m */,
+				758946111BC5484800798BBD /* LoginViewController.h */,
+				758946121BC5484800798BBD /* LoginViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -351,7 +351,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				757785831BC5438900632BCE /* ViewController.m in Sources */,
+				758946131BC5484800798BBD /* LoginViewController.m in Sources */,
 				757785801BC5438900632BCE /* AppDelegate.m in Sources */,
 				757785891BC5438900632BCE /* Go2Study.xcdatamodeld in Sources */,
 				7577857D1BC5438900632BCE /* main.m in Sources */,
