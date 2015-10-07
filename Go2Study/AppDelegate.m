@@ -44,6 +44,14 @@
     [self saveContext];
 }
 
+- (BOOL)application:(UIApplication *)application openURL:(nonnull NSURL *)url options:(nonnull NSDictionary<NSString *,id> *)options {
+    if ([[url scheme] isEqualToString:@"go2study"]) {
+        return YES;
+    }
+    
+    return NO;
+}
+
 #pragma mark - Core Data stack
 
 @synthesize managedObjectContext = _managedObjectContext;
