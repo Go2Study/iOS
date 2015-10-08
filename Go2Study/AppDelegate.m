@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "LoginViewController.h"
 
 @interface AppDelegate ()
 
@@ -59,6 +60,9 @@
         
         // !TODO: This needs to be stored in the keychain for security
         [[NSUserDefaults standardUserDefaults] setObject:[URLParameters objectForKey:@"access_token"] forKey:@"fhict-access-token"];
+        
+        // Dismiss the SafariViewController used to get OAuth Access
+        [(LoginViewController *)self.window.rootViewController dismissSafariViewController];
 
         return YES;
     }

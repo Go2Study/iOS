@@ -7,10 +7,12 @@
 //
 
 #import "LoginViewController.h"
+@import SafariServices;
 
 @interface LoginViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *buttonOAuthLogin;
+@property (strong, nonatomic) SFSafariViewController *safariViewController;
 
 @end
 
@@ -33,7 +35,20 @@
     
     NSString *oauthURLString = [NSString stringWithFormat:@"https://tas.fhict.nl/identity/connect/authorize?client_id=%@&scope=%@&response_type=token&redirect_uri=%@", clientID, requestedScopes, redirectURI];
     
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:oauthURLString]];
+    [self openURLinSafariViewController:[NSURL URLWithString:oauthURLString]];
+    
+//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:oauthURLString]];
+}
+
+#pragma mark - Private
+
+- (void)openURLinSafariViewController:(NSURL *)url {
+    self.safariViewController = [[SFSafariViewController alloc] initWithURL:url];
+    [self presentViewController:self.safariViewController animated:YES completion:nil];
+}
+
+- (void)dismissSafariViewController {
+    [self.safariViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 
