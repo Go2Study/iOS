@@ -10,6 +10,4 @@
 
 @interface LoginViewController : UIViewController
 
-- (void)dismissSafariViewController;
-
 @end

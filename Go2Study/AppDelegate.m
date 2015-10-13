@@ -7,17 +7,30 @@
 //
 
 #import "AppDelegate.h"
-#import "LoginViewController.h"
+#import "FHICTOAuth.h"
 
 @interface AppDelegate ()
+
+@property (nonatomic, strong) FHICTOAuth *fhictOAuth;
 
 @end
 
 @implementation AppDelegate
 
+- (FHICTOAuth *)fhictOAuth {
+    if (!_fhictOAuth) {
+        _fhictOAuth = [[FHICTOAuth alloc] init];
+    }
+    
+    return _fhictOAuth;
+}
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [self checkAuth];
+    
     return YES;
 }
 
@@ -37,6 +50,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [self checkAuth];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -47,23 +61,9 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(nonnull NSURL *)url options:(nonnull NSDictionary<NSString *,id> *)options {
     if ([[url scheme] isEqualToString:@"go2study"]) {
-        NSArray *URLComponents = [[url fragment] componentsSeparatedByString:@"&"];
-        NSMutableDictionary *URLParameters = [[NSMutableDictionary alloc] init];
+        [self.fhictOAuth saveAccessToken:url];
+        [self checkAuth];
         
-        for (NSString *keyValuePair in URLComponents) {
-            NSArray *pairComponents = [keyValuePair componentsSeparatedByString:@"="];
-            NSString *key = [[pairComponents firstObject] stringByRemovingPercentEncoding];
-            NSString *value = [[pairComponents lastObject] stringByRemovingPercentEncoding];
-            
-            [URLParameters setObject:value forKey:key];
-        }
-        
-        // !TODO: This needs to be stored in the keychain for security
-        [[NSUserDefaults standardUserDefaults] setObject:[URLParameters objectForKey:@"access_token"] forKey:@"fhict-access-token"];
-        
-        // Dismiss the SafariViewController used to get OAuth Access
-        [(LoginViewController *)self.window.rootViewController dismissSafariViewController];
-
         return YES;
     }
     
@@ -148,6 +148,21 @@
             abort();
         }
     }
+}
+
+
+#pragma mark - Private
+
+- (void)checkAuth {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    if ([self.fhictOAuth confirmAuthStatus]) {
+        self.window.rootViewController = [storyboard instantiateInitialViewController];
+    } else {
+        self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"loginViewController"];
+    }
+    
+    [self.window makeKeyAndVisible];
 }
 
 @end
