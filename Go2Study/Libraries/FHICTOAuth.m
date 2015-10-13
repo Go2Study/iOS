@@ -91,6 +91,7 @@
     
     // !TODO: This needs to be stored in the keychain for security
     self.accessToken = [URLParameters objectForKey:@"access_token"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"oauthDismissSafariViewController" object:nil];
 }
 
 - (BOOL)confirmAuthStatus {

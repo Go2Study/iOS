@@ -8,10 +8,12 @@
 
 #import "LoginViewController.h"
 #import "FHICTOAuth.h"
+@import SafariServices;
 
-@interface LoginViewController ()
+@interface LoginViewController () <SFSafariViewControllerDelegate>
 
 @property (nonatomic, strong) FHICTOAuth *fhictOAuth;
+@property (nonatomic, strong) SFSafariViewController *safariViewController;
 
 @end
 
@@ -26,18 +28,44 @@
     return _fhictOAuth;
 }
 
+- (SFSafariViewController *)safariViewController {
+    if (!_safariViewController) {
+        _safariViewController = [[SFSafariViewController alloc] initWithURL:[self.fhictOAuth oauthURL]];
+        _safariViewController.delegate = self;
+    }
+    
+    return _safariViewController;
+}
+
 
 #pragma mark - UIViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(dismissSafariViewController) name:@"oauthDismissSafariViewController"
+                                               object:nil];
 }
 
 
 #pragma mark - Actions
 
 - (IBAction)buttonOAuthLoginPressed:(UIButton *)sender {
-    [[UIApplication sharedApplication] openURL:[self.fhictOAuth oauthURL]];
+    [self presentViewController:self.safariViewController animated:YES completion:nil];
+//    [[UIApplication sharedApplication] openURL:[self.fhictOAuth oauthURL]];
+}
+
+#pragma mark - Private
+
+- (void)dismissSafariViewController {
+    [self.safariViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - SFSafariViewControllerDelegate
+
+- (void)safariViewControllerDidFinish:(SFSafariViewController *)controller {
+    [self dismissSafariViewController];
 }
 
 @end
