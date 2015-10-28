@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		02E418B79995834A8422B0F0 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE9193BC430C2A68B1C42366 /* libPods.a */; };
-		754F94731BCD52F600C0624C /* FHICTOAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 754F94721BCD52F600C0624C /* FHICTOAuth.m */; settings = {ASSET_TAGS = (); }; };
-		756A28B91BC67F3E0088A921 /* PeopleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 756A28B81BC67F3E0088A921 /* PeopleTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+		754F94731BCD52F600C0624C /* FHICTOAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 754F94721BCD52F600C0624C /* FHICTOAuth.m */; };
+		756A28B91BC67F3E0088A921 /* PeopleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 756A28B81BC67F3E0088A921 /* PeopleTableViewController.m */; };
 		7577857D1BC5438900632BCE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7577857C1BC5438900632BCE /* main.m */; };
 		757785801BC5438900632BCE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7577857F1BC5438900632BCE /* AppDelegate.m */; };
 		757785861BC5438900632BCE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 757785841BC5438900632BCE /* Main.storyboard */; };
@@ -18,8 +18,8 @@
 		7577858E1BC5438900632BCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7577858C1BC5438900632BCE /* LaunchScreen.storyboard */; };
 		757785991BC5438900632BCE /* Go2StudyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 757785981BC5438900632BCE /* Go2StudyTests.m */; };
 		757785A41BC5438900632BCE /* Go2StudyUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 757785A31BC5438900632BCE /* Go2StudyUITests.m */; };
-		758946131BC5484800798BBD /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 758946121BC5484800798BBD /* LoginViewController.m */; settings = {ASSET_TAGS = (); }; };
-		75F7DC881BCBE07200088F01 /* PersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F7DC871BCBE07200088F01 /* PersonViewController.m */; settings = {ASSET_TAGS = (); }; };
+		758946131BC5484800798BBD /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 758946121BC5484800798BBD /* LoginViewController.m */; };
+		75F7DC881BCBE07200088F01 /* PersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F7DC871BCBE07200088F01 /* PersonViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -522,6 +522,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
 				INFOPLIST_FILE = Go2Study/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = lol.go2study.Go2Study;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -535,6 +536,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
 				INFOPLIST_FILE = Go2Study/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = lol.go2study.Go2Study;
 				PRODUCT_NAME = "$(TARGET_NAME)";

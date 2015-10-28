@@ -7,6 +7,7 @@
 //
 
 #import "FHICTOAuth.h"
+@import UIKit;
 
 @interface FHICTOAuth ()
 
@@ -108,7 +109,14 @@
     NSError *jsonError = [[NSError alloc] init];
     NSHTTPURLResponse *responseCode = nil;
     
+    // Begin Networking
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
     NSData *requestData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&requestError];
+    
+    // End Networking
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    
     NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:requestData options:NSJSONReadingMutableContainers error:&jsonError];
     
     return jsonArray;

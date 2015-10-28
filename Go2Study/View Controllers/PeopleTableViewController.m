@@ -39,6 +39,14 @@
 }
 
 
+#pragma mark - Actions
+
+- (IBAction)peopleToggleValueChanged:(UISegmentedControl *)sender {
+    NSLog(@"%@", sender);
+}
+
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
