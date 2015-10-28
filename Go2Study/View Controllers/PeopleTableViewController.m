@@ -7,12 +7,15 @@
 //
 
 #import "PeopleTableViewController.h"
+#import "PersonTableViewCell.h"
+#import "PersonViewController.h"
 #import "FHICTOAuth.h"
 
-@interface PeopleTableViewController ()
+@interface PeopleTableViewController () <UITableViewDelegate>
 
 @property (nonatomic, strong) NSArray *people;
 @property (nonatomic, strong) FHICTOAuth *fhictOAuth;
+@property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
 
 @end
 
@@ -32,6 +35,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self getPeople];
+    self.tableView.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,15 +62,29 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"personCell" forIndexPath:indexPath];
+    PersonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"personCell"];
     
     NSDictionary *person = [self.people objectAtIndex:[indexPath row]];
+    NSURL *imageURL      = [NSURL URLWithString:[person objectForKey:@"photo"]];
     
-    cell.textLabel.text = [person objectForKey:@"displayName"];
-    cell.detailTextLabel.text = [person objectForKey:@"id"];
+    cell.photo.image   = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];
+    cell.name.text     = [person objectForKey:@"displayName"];
+    cell.subtitle.text = [person objectForKey:@"office"];
     
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    [self performSegueWithIdentifier:@"showPerson" sender:indexPath];
+}
+
+
+#pragma mark - UITableVeiwDelegate
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [self.searchBar resignFirstResponder];
+}
+
 
 #pragma mark - Navigation
 
@@ -74,6 +92,11 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([[segue identifier] isEqualToString:@"showPerson"]) {
+        PersonViewController *personViewController = [segue destinationViewController];
+        personViewController.person = [self.people objectAtIndex:[(NSIndexPath *)sender row]];
+    }
+    
 }
 
 #pragma mark - Private

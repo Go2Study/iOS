@@ -10,10 +10,11 @@
 
 @interface PersonViewController ()
 
-@property (weak, nonatomic) IBOutlet UILabel *labelPCN;
-@property (weak, nonatomic) IBOutlet UILabel *labelName;
-@property (weak, nonatomic) IBOutlet UILabel *labelOffice;
-@property (weak, nonatomic) IBOutlet UILabel *labelMail;
+
+@property (weak, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet UILabel *personTitle;
+@property (weak, nonatomic) IBOutlet UILabel *department;
+
 
 @end
 
@@ -21,7 +22,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    if (self.person) {
+        self.name.text = [self.person objectForKey:@"displayName"];
+        self.personTitle.text = [self.person objectForKey:@"title"];
+        self.department.text = [self.person objectForKey:@"department"];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
