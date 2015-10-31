@@ -8,7 +8,7 @@
 
 #import "PeopleTableViewController.h"
 #import "PersonTableViewCell.h"
-#import "PersonViewController.h"
+#import "PersonTableViewController.h"
 #import "FHICTOAuth.h"
 
 @interface PeopleTableViewController () <UITableViewDelegate>
@@ -74,10 +74,6 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    [self performSegueWithIdentifier:@"showPerson" sender:indexPath];
-}
-
 
 #pragma mark - UITableVeiwDelegate
 
@@ -88,16 +84,14 @@
 
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
     if ([[segue identifier] isEqualToString:@"showPerson"]) {
-        PersonViewController *personViewController = [segue destinationViewController];
-        personViewController.person = [self.people objectAtIndex:[(NSIndexPath *)sender row]];
+        PersonTableViewController *personTableViewController = [segue destinationViewController];
+        personTableViewController.person = [self.people objectAtIndex:[[self.tableView indexPathForCell:sender] row]];
     }
     
 }
+
 
 #pragma mark - Private
 
