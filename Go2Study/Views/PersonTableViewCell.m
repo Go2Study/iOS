@@ -11,13 +11,13 @@
 @implementation PersonTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    self.photo.layer.cornerRadius = 23;
+    self.photo.clipsToBounds = YES;
+    self.photo.backgroundColor = [UIColor purpleColor];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end
