@@ -32,9 +32,16 @@
     self.labelTitle.text      = [self.person objectForKey:@"title"];
     self.labelDepartment.text = [self.person objectForKey:@"department"];
     
-    self.labelOffice.text = [self.person objectForKey:@"office"];
-    self.labelEmail.text  = [self.person objectForKey:@"mail"];
-    self.labelTelephone.text = [self.person objectForKey:@"telephoneNumber"];
+    self.labelOffice.text     = [self.person objectForKey:@"office"];
+    self.labelEmail.text      = [self.person objectForKey:@"mail"];
+    self.labelTelephone.text  = [self.person objectForKey:@"telephoneNumber"];
+}
+
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end
