@@ -20,6 +20,7 @@
 		757785A41BC5438900632BCE /* Go2StudyUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 757785A31BC5438900632BCE /* Go2StudyUITests.m */; };
 		757BBB431BE356AC00618C5A /* PersonTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 757BBB421BE356AC00618C5A /* PersonTableViewController.m */; };
 		758946131BC5484800798BBD /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 758946121BC5484800798BBD /* LoginViewController.m */; };
+		75CAFDC81BE8CC3700AF5AA8 /* G2SApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CAFDC71BE8CC3700AF5AA8 /* G2SApi.m */; };
 		F6CCA0898FEA8F427AC50DF2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40FE83AD5AC9E10F4F2AA914 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,8 @@
 		757BBB421BE356AC00618C5A /* PersonTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonTableViewController.m; sourceTree = "<group>"; };
 		758946111BC5484800798BBD /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		758946121BC5484800798BBD /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		75CAFDC61BE8CC3700AF5AA8 /* G2SApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = G2SApi.h; sourceTree = "<group>"; };
+		75CAFDC71BE8CC3700AF5AA8 /* G2SApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = G2SApi.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +114,8 @@
 			children = (
 				754F94711BCD52F600C0624C /* FHICTOAuth.h */,
 				754F94721BCD52F600C0624C /* FHICTOAuth.m */,
+				75CAFDC61BE8CC3700AF5AA8 /* G2SApi.h */,
+				75CAFDC71BE8CC3700AF5AA8 /* G2SApi.m */,
 			);
 			path = Libraries;
 			sourceTree = "<group>";
@@ -409,6 +414,7 @@
 				75611DCC1BE1604A009544C0 /* PersonTableViewCell.m in Sources */,
 				758946131BC5484800798BBD /* LoginViewController.m in Sources */,
 				757785801BC5438900632BCE /* AppDelegate.m in Sources */,
+				75CAFDC81BE8CC3700AF5AA8 /* G2SApi.m in Sources */,
 				757785891BC5438900632BCE /* Go2Study.xcdatamodeld in Sources */,
 				7577857D1BC5438900632BCE /* main.m in Sources */,
 			);

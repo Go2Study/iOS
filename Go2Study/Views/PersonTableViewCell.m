@@ -11,9 +11,9 @@
 @implementation PersonTableViewCell
 
 - (void)awakeFromNib {
-    self.photo.layer.cornerRadius = 23;
+    self.photo.layer.cornerRadius = 4;
     self.photo.clipsToBounds = YES;
-    self.photo.backgroundColor = [UIColor purpleColor];
+    self.photo.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

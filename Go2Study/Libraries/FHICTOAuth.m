@@ -7,6 +7,7 @@
 //
 
 #import "FHICTOAuth.h"
+#import "AFNetworking.h"
 @import UIKit;
 
 @interface FHICTOAuth ()
@@ -14,7 +15,6 @@
 @property (nonatomic, strong) NSString *clientID;
 @property (nonatomic, strong) NSString *scopes;
 @property (nonatomic, strong) NSString *callbackURL;
-@property (nonatomic, strong) NSURL *baseURL;
 
 @end
 
@@ -55,12 +55,12 @@
     return _callbackURL;
 }
 
-- (NSURL *)baseURL {
-    if (!_baseURL) {
-        _baseURL = [[NSURL alloc] initWithString:@"https://tas.fhict.nl:443/api/v1/"];
+- (NSURL *)apiBaseURL {
+    if (!_apiBaseURL) {
+        _apiBaseURL = [[NSURL alloc] initWithString:@"https://tas.fhict.nl:443/api/v1/"];
     }
     
-    return _baseURL;
+    return _apiBaseURL;
 }
 
 - (NSString *)accessToken {
@@ -97,29 +97,6 @@
 
 - (BOOL)confirmAuthStatus {
     return self.accessToken ? YES : NO;
-}
-
-- (NSArray *)getJSONFrom:(NSString *)endpoint {
-    NSURL *url = [[NSURL alloc] initWithString:endpoint relativeToURL:self.baseURL];
-    
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
-    [request addValue:[NSString stringWithFormat:@"Bearer %@", self.accessToken] forHTTPHeaderField:@"Authorization"];
-    
-    NSError *requestError = [[NSError alloc] init];
-    NSError *jsonError = [[NSError alloc] init];
-    NSHTTPURLResponse *responseCode = nil;
-    
-    // Begin Networking
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    
-    NSData *requestData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&requestError];
-    
-    // End Networking
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    
-    NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:requestData options:NSJSONReadingMutableContainers error:&jsonError];
-    
-    return jsonArray;
 }
 
 @end

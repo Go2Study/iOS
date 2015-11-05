@@ -11,10 +11,10 @@
 @interface FHICTOAuth : NSObject
 
 @property (nonatomic, strong) NSURL *oauthURL;
+@property (nonatomic, strong) NSURL *apiBaseURL;
 @property (nonatomic, strong) NSString *accessToken;
 
 - (void)saveAccessToken:(NSURL *)url;
 - (BOOL)confirmAuthStatus;
-- (NSArray *)getJSONFrom:(NSString *)endpoint;
 
 @end

@@ -9,11 +9,15 @@
 #import "PeopleTableViewController.h"
 #import "PersonTableViewCell.h"
 #import "PersonTableViewController.h"
+#import "G2SApi.h"
 #import "FHICTOAuth.h"
+#import "AFNetworking.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface PeopleTableViewController () <UITableViewDelegate>
 
 @property (nonatomic, strong) NSArray *people;
+@property (nonatomic, strong) G2SApi *g2sAPI;
 @property (nonatomic, strong) FHICTOAuth *fhictOAuth;
 @property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
 
@@ -21,6 +25,14 @@
 
 
 @implementation PeopleTableViewController
+
+- (G2SApi *)g2sAPI {
+    if (!_g2sAPI) {
+        _g2sAPI = [[G2SApi alloc] init];
+    }
+    
+    return _g2sAPI;
+}
 
 - (FHICTOAuth *)fhictOAuth {
     if (!_fhictOAuth) {
@@ -30,11 +42,12 @@
     return _fhictOAuth;
 }
 
+
 #pragma mark - UIViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self getPeople];
+    [self getStaff];
     self.tableView.delegate = self;
 }
 
@@ -45,10 +58,20 @@
 
 #pragma mark - Actions
 
-- (IBAction)peopleToggleValueChanged:(UISegmentedControl *)sender {
-    NSLog(@"%@", sender);
+- (IBAction)segmentedControlValueChanged:(UISegmentedControl *)sender {
+    self.people = nil;
+    
+    if (sender.selectedSegmentIndex == 0) {             // GET students
+//        [self.tableView reloadData];
+//        [self getStudents];
+    } else if (sender.selectedSegmentIndex == 1) {      // GET staff
+        [self getStaff];
+    } else if (sender.selectedSegmentIndex == 2) {      // GET groups
+        
+    }
+    
+    [self.tableView reloadData];
 }
-
 
 
 #pragma mark - Table view data source
@@ -65,9 +88,9 @@
     PersonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"personCell"];
     
     NSDictionary *person = [self.people objectAtIndex:[indexPath row]];
-    NSURL *imageURL      = [NSURL URLWithString:[person objectForKey:@"photo"]];
     
-    cell.photo.image   = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];
+    [self setStaffPhotoForCell:cell pcn:[person objectForKey:@"id"]];
+    
     cell.name.text     = [person objectForKey:@"displayName"];
     cell.subtitle.text = [person objectForKey:@"office"];
     
@@ -93,11 +116,56 @@
 }
 
 
-#pragma mark - Private
+#pragma mark - API Operations
 
-- (void)getPeople {
-    self.people = [self.fhictOAuth getJSONFrom:@"people"];
-    [self.tableView reloadData];
+- (void)getStudents {
+    NSURL *url = [[NSURL alloc] initWithString:@"users" relativeToURL:self.g2sAPI.apiBaseURL];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        self.people = (NSArray *)responseObject;
+        [self.tableView reloadData];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+    
+    [operation start];
+}
+
+- (void)getStaff {
+    NSURL *url = [[NSURL alloc] initWithString:@"people" relativeToURL:self.fhictOAuth.apiBaseURL];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request addValue:[NSString stringWithFormat:@"Bearer %@", self.fhictOAuth.accessToken] forHTTPHeaderField:@"Authorization"];
+
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        self.people = (NSArray *)responseObject;
+        [self.tableView reloadData];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+    
+    [operation start];
+}
+
+- (void)setStaffPhotoForCell:(PersonTableViewCell *)personCell pcn:(NSString *)pcn {
+    NSString *endpoint = [NSString stringWithFormat:@"pictures/%@/large", pcn];
+    NSURL *url = [[NSURL alloc] initWithString:endpoint relativeToURL:self.fhictOAuth.apiBaseURL];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request addValue:[NSString stringWithFormat:@"Bearer %@", self.fhictOAuth.accessToken] forHTTPHeaderField:@"Authorization"];
+    
+    [personCell.photo setImageWithURLRequest:request
+                      placeholderImage:nil
+                               success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                   personCell.photo.image = image;
+                                   [personCell setNeedsLayout];
+                               }
+                               failure:nil];
 }
 
 @end
