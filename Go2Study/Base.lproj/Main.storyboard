@@ -32,43 +32,43 @@
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="62"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NFZ-Qv-ZNY">
-                                            <rect key="frame" x="8" y="8" width="46" height="46"/>
-                                            <animations/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="46" id="OZ4-rQ-VoF"/>
-                                            </constraints>
-                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Leominster, Massachusetts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NJ9-c0-P9U">
-                                            <rect key="frame" x="62" y="33" width="497" height="21"/>
+                                            <rect key="frame" x="69" y="33" width="490" height="21"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Johnny Appleseed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kg1-fT-jyD">
-                                            <rect key="frame" x="62" y="8" width="497" height="21"/>
+                                            <rect key="frame" x="69" y="8" width="490" height="21"/>
                                             <animations/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="3PB-Ua-n5a"/>
+                                                <constraint firstAttribute="height" constant="21" id="9Vb-ZS-evB"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NFZ-Qv-ZNY">
+                                            <rect key="frame" x="15" y="8" width="46" height="46"/>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="46" id="CaS-QJ-PBV"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <animations/>
                                     <constraints>
-                                        <constraint firstItem="NJ9-c0-P9U" firstAttribute="top" secondItem="Kg1-fT-jyD" secondAttribute="bottom" constant="4" id="Bik-E8-cha"/>
-                                        <constraint firstItem="Kg1-fT-jyD" firstAttribute="leading" secondItem="NJ9-c0-P9U" secondAttribute="leading" id="F1Z-9N-dKt"/>
-                                        <constraint firstItem="NFZ-Qv-ZNY" firstAttribute="top" secondItem="V5F-kD-nH1" secondAttribute="topMargin" id="JHG-a3-VML"/>
-                                        <constraint firstItem="Kg1-fT-jyD" firstAttribute="trailing" secondItem="V5F-kD-nH1" secondAttribute="trailingMargin" id="K5w-X1-9ka"/>
-                                        <constraint firstItem="NFZ-Qv-ZNY" firstAttribute="top" secondItem="Kg1-fT-jyD" secondAttribute="top" id="WMf-Zc-ayB"/>
-                                        <constraint firstItem="Kg1-fT-jyD" firstAttribute="leading" secondItem="NFZ-Qv-ZNY" secondAttribute="trailing" constant="8" symbolic="YES" id="Z5Q-KI-QAc"/>
-                                        <constraint firstItem="NJ9-c0-P9U" firstAttribute="bottom" secondItem="NFZ-Qv-ZNY" secondAttribute="bottom" id="aOb-RQ-eJB"/>
-                                        <constraint firstItem="Kg1-fT-jyD" firstAttribute="trailing" secondItem="NJ9-c0-P9U" secondAttribute="trailing" id="cpI-h2-21V"/>
-                                        <constraint firstItem="NFZ-Qv-ZNY" firstAttribute="leading" secondItem="V5F-kD-nH1" secondAttribute="leadingMargin" id="o1o-KP-p4J"/>
-                                        <constraint firstItem="NFZ-Qv-ZNY" firstAttribute="bottom" secondItem="V5F-kD-nH1" secondAttribute="bottomMargin" id="t8F-Bn-T0O"/>
+                                        <constraint firstItem="Kg1-fT-jyD" firstAttribute="leading" secondItem="NFZ-Qv-ZNY" secondAttribute="trailing" constant="8" symbolic="YES" id="AsO-uo-DFN"/>
+                                        <constraint firstItem="NFZ-Qv-ZNY" firstAttribute="leading" secondItem="V5F-kD-nH1" secondAttribute="leadingMargin" constant="7" id="CV6-lU-P6z"/>
+                                        <constraint firstItem="Kg1-fT-jyD" firstAttribute="trailing" secondItem="V5F-kD-nH1" secondAttribute="trailingMargin" id="FyQ-dd-xXA"/>
+                                        <constraint firstItem="NJ9-c0-P9U" firstAttribute="bottom" secondItem="V5F-kD-nH1" secondAttribute="bottomMargin" id="HJb-Qh-ysu"/>
+                                        <constraint firstItem="Kg1-fT-jyD" firstAttribute="leading" secondItem="NJ9-c0-P9U" secondAttribute="leading" id="KCB-45-uKO"/>
+                                        <constraint firstItem="Kg1-fT-jyD" firstAttribute="trailing" secondItem="NJ9-c0-P9U" secondAttribute="trailing" id="NwQ-oy-BeL"/>
+                                        <constraint firstItem="NFZ-Qv-ZNY" firstAttribute="top" secondItem="Kg1-fT-jyD" secondAttribute="top" id="imz-mA-EYk"/>
+                                        <constraint firstItem="NJ9-c0-P9U" firstAttribute="bottom" secondItem="NFZ-Qv-ZNY" secondAttribute="bottom" id="sns-8a-3X5"/>
+                                        <constraint firstItem="Kg1-fT-jyD" firstAttribute="top" secondItem="V5F-kD-nH1" secondAttribute="topMargin" id="uIO-zs-wBl"/>
+                                        <constraint firstItem="NJ9-c0-P9U" firstAttribute="top" secondItem="Kg1-fT-jyD" secondAttribute="bottom" constant="4" id="wXB-rq-s26"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <animations/>
