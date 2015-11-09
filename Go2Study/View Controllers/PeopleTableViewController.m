@@ -14,12 +14,11 @@
 #import "AFNetworking.h"
 #import "UIImageView+AFNetworking.h"
 
-@interface PeopleTableViewController () <UITableViewDelegate>
+@interface PeopleTableViewController ()
 
 @property (nonatomic, strong) NSArray *people;
 @property (nonatomic, strong) G2SApi *g2sAPI;
 @property (nonatomic, strong) FHICTOAuth *fhictOAuth;
-@property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
 
 @end
 
@@ -62,7 +61,6 @@
     self.people = nil;
     
     if (sender.selectedSegmentIndex == 0) {             // GET students
-//        [self.tableView reloadData];
 //        [self getStudents];
     } else if (sender.selectedSegmentIndex == 1) {      // GET staff
         [self getStaff];
@@ -95,13 +93,6 @@
     cell.subtitle.text = [person objectForKey:@"office"];
     
     return cell;
-}
-
-
-#pragma mark - UITableVeiwDelegate
-
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    [self.searchBar resignFirstResponder];
 }
 
 

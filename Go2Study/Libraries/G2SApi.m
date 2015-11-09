@@ -12,7 +12,7 @@
 
 - (NSURL *)apiBaseURL {
     if (!_apiBaseURL) {
-        _apiBaseURL = [[NSURL alloc] initWithString:@"http://go2study.dev/"];
+        _apiBaseURL = [[NSURL alloc] initWithString:@"http://localhost:8080/api/"];
     }
     
     return _apiBaseURL;
