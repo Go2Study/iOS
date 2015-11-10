@@ -19,7 +19,8 @@
 @interface PeopleTableViewController () <FontysClientDelegate>
 
 @property (nonatomic, strong) G2SApi *g2sAPI;
-@property (nonatomic, strong) NSFetchedResultsController *peopleFetchedResultsController;
+@property (nonatomic, strong) NSFetchedResultsController *staffFetchedResultsController;
+@property (nonatomic, strong) NSFetchedResultsController *studentsFetchedResultsController;
 @property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (nonatomic, strong) FontysClient *fontysClient;
 
@@ -27,6 +28,8 @@
 
 
 @implementation PeopleTableViewController
+
+NSString *currentDisplay = @"staff";
 
 - (G2SApi *)g2sAPI {
     if (!_g2sAPI) {
@@ -45,20 +48,42 @@
     return _managedObjectContext;
 }
 
-- (NSFetchedResultsController *)peopleFetchedResultsController {
-    if (!_peopleFetchedResultsController) {
+- (NSFetchedResultsController *)staffFetchedResultsController {
+    if (!_staffFetchedResultsController) {
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
         
         NSSortDescriptor *nameSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"displayName" ascending:YES];
         NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:nameSortDescriptor, nil];
         [fetchRequest setSortDescriptors:sortDescriptors];
         
-        _peopleFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+        NSPredicate *staffPredicate = [NSPredicate predicateWithFormat:@"type == %@", @"staff"];
+        [fetchRequest setPredicate:staffPredicate];
+        
+        _staffFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                               managedObjectContext:self.managedObjectContext
                                                                                 sectionNameKeyPath:nil
                                                                                          cacheName:nil];
     }
-    return _peopleFetchedResultsController;
+    return _staffFetchedResultsController;
+}
+
+- (NSFetchedResultsController *)studentsFetchedResultsController {
+    if (!_studentsFetchedResultsController) {
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
+        
+        NSSortDescriptor *nameSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"displayName" ascending:YES];
+        NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:nameSortDescriptor, nil];
+        [fetchRequest setSortDescriptors:sortDescriptors];
+        
+        NSPredicate *staffPredicate = [NSPredicate predicateWithFormat:@"type == %@", @"student"];
+        [fetchRequest setPredicate:staffPredicate];
+        
+        _studentsFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                                                             managedObjectContext:self.managedObjectContext
+                                                                               sectionNameKeyPath:nil
+                                                                                        cacheName:nil];
+    }
+    return _studentsFetchedResultsController;
 }
 
 - (FontysClient *)fontysClient {
@@ -84,9 +109,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.fontysClient getUsers];
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"hasDownloadedStaff"]) {
+        [self.fontysClient getUsers];
+    }
     
     self.tableView.delegate = self;
+    [self reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -100,11 +128,15 @@
 //    self.people = nil;
     
     if (sender.selectedSegmentIndex == 0) {             // GET students
+        currentDisplay = @"students";
 //        [self getStudents];
     } else if (sender.selectedSegmentIndex == 1) {      // GET staff
-        [self.fontysClient getUsers];
+        currentDisplay = @"staff";
+        if (![[NSUserDefaults standardUserDefaults] boolForKey:@"hasDownloadedStaff"]) {
+            [self.fontysClient getUsers];
+        }
     } else if (sender.selectedSegmentIndex == 2) {      // GET groups
-        
+        currentDisplay = @"groups";
     }
     
     [self reloadData];
@@ -114,14 +146,23 @@
 
 - (void)reloadData {
     NSError *error;
-    if (![self.peopleFetchedResultsController performFetch:&error]) {
-        NSLog(@"Perform Fetch Error: %@", [error localizedDescription]);
+    
+    if ([currentDisplay isEqualToString:@"students"]) {
+        if (![self.studentsFetchedResultsController performFetch:&error]) {
+            NSLog(@"Perform Fetch Error: %@", [error localizedDescription]);
+        }
+    } else if ([currentDisplay isEqualToString:@"staff"]) {
+        if (![self.staffFetchedResultsController performFetch:&error]) {
+            NSLog(@"Perform Fetch Error: %@", [error localizedDescription]);
+        }
+    } else if ([currentDisplay isEqualToString:@"groups"]) {
+        
     }
     
     [self.tableView reloadData];
 }
 
-- (void)deleteData {
+- (void)deleteUserData {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
     NSBatchDeleteRequest *deleteRequest = [[NSBatchDeleteRequest alloc] initWithFetchRequest:fetchRequest];
     [self.persistentStoreCoordinator executeRequest:deleteRequest withContext:self.managedObjectContext error:nil];
@@ -142,7 +183,6 @@
                                      failure:nil];
 }
 
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -150,9 +190,18 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if ([[self.peopleFetchedResultsController sections] count] > 0) {
-        id <NSFetchedResultsSectionInfo> sectionInfo = [[self.peopleFetchedResultsController sections] objectAtIndex:section];
-        return [sectionInfo numberOfObjects];
+    if ([currentDisplay isEqualToString:@"students"]) {
+        if ([[self.studentsFetchedResultsController sections] count] > 0) {
+            id <NSFetchedResultsSectionInfo> sectionInfo = [[self.studentsFetchedResultsController sections] objectAtIndex:section];
+            return [sectionInfo numberOfObjects];
+        }
+    } else if ([currentDisplay isEqualToString:@"staff"]) {
+        if ([[self.staffFetchedResultsController sections] count] > 0) {
+            id <NSFetchedResultsSectionInfo> sectionInfo = [[self.staffFetchedResultsController sections] objectAtIndex:section];
+            return [sectionInfo numberOfObjects];
+        }
+    } else if ([currentDisplay isEqualToString:@"groups"]) {
+        
     }
     
     return 0;
@@ -161,13 +210,21 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PersonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"personCell"];
     
-    User *user = [self.peopleFetchedResultsController objectAtIndexPath:indexPath];
-    
-    [self setStaffPhotoForCell:cell pcn:user.pcn];
-    
-    cell.name.text     = user.displayName;
-    cell.subtitle.text = user.office;
-//    cell.photo.image   = [UIImage imageWithData:user.photo];
+    if ([currentDisplay isEqualToString:@"students"]) {
+        User *user = [self.studentsFetchedResultsController objectAtIndexPath:indexPath];
+        
+        cell.name.text = user.displayName;
+        cell.subtitle.text = user.pcn;
+    } else if ([currentDisplay isEqualToString:@"staff"]) {
+        User *user = [self.staffFetchedResultsController objectAtIndexPath:indexPath];
+        
+        [self setStaffPhotoForCell:cell pcn:user.pcn];
+        
+        cell.name.text     = user.displayName;
+        cell.subtitle.text = user.office;
+    } else if ([currentDisplay isEqualToString:@"groups"]) {
+        
+    }
     
     return cell;
 }
@@ -178,7 +235,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showPerson"]) {
         PersonTableViewController *personTableViewController = [segue destinationViewController];
-        personTableViewController.user = [self.peopleFetchedResultsController objectAtIndexPath:[self.tableView indexPathForCell:sender]];
+        personTableViewController.user = [self.staffFetchedResultsController objectAtIndexPath:[self.tableView indexPathForCell:sender]];
     }
     
 }
@@ -189,7 +246,7 @@
     NSArray *responseData = (NSArray *)data;
     
     if (responseData) {
-        [self deleteData];
+        [self deleteUserData];
     }
     
     for (NSDictionary *userDictionary in responseData) {
@@ -214,6 +271,7 @@
         }
     }
     
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hasDownloadedStaff"];
     [self reloadData];
 }
 
