@@ -22,7 +22,7 @@
 		757785A41BC5438900632BCE /* Go2StudyUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 757785A31BC5438900632BCE /* Go2StudyUITests.m */; };
 		757BBB431BE356AC00618C5A /* PersonTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 757BBB421BE356AC00618C5A /* PersonTableViewController.m */; };
 		758946131BC5484800798BBD /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 758946121BC5484800798BBD /* LoginViewController.m */; };
-		75977DAA1BF1F13D0084CFA1 /* FHICTAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 75977DA91BF1F13D0084CFA1 /* FHICTAPI.m */; };
+		75B46B7D1BF211EE000E3BE2 /* FontysClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B46B7C1BF211EE000E3BE2 /* FontysClient.m */; };
 		75CAFDC81BE8CC3700AF5AA8 /* G2SApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CAFDC71BE8CC3700AF5AA8 /* G2SApi.m */; };
 		75F7E2F41BF0F49300BAEF19 /* CalendarTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F7E2F31BF0F49300BAEF19 /* CalendarTableViewController.m */; };
 		75F7E2F71BF0F49E00BAEF19 /* MessagesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F7E2F61BF0F49E00BAEF19 /* MessagesTableViewController.m */; };
@@ -80,8 +80,8 @@
 		757BBB421BE356AC00618C5A /* PersonTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonTableViewController.m; sourceTree = "<group>"; };
 		758946111BC5484800798BBD /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		758946121BC5484800798BBD /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		75977DA81BF1F13D0084CFA1 /* FHICTAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FHICTAPI.h; sourceTree = "<group>"; };
-		75977DA91BF1F13D0084CFA1 /* FHICTAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FHICTAPI.m; sourceTree = "<group>"; };
+		75B46B7B1BF211EE000E3BE2 /* FontysClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontysClient.h; sourceTree = "<group>"; };
+		75B46B7C1BF211EE000E3BE2 /* FontysClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontysClient.m; sourceTree = "<group>"; };
 		75CAFDC61BE8CC3700AF5AA8 /* G2SApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = G2SApi.h; sourceTree = "<group>"; };
 		75CAFDC71BE8CC3700AF5AA8 /* G2SApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = G2SApi.m; sourceTree = "<group>"; };
 		75F7E2F21BF0F49300BAEF19 /* CalendarTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarTableViewController.h; sourceTree = "<group>"; };
@@ -134,8 +134,8 @@
 				754F94721BCD52F600C0624C /* FHICTOAuth.m */,
 				75CAFDC61BE8CC3700AF5AA8 /* G2SApi.h */,
 				75CAFDC71BE8CC3700AF5AA8 /* G2SApi.m */,
-				75977DA81BF1F13D0084CFA1 /* FHICTAPI.h */,
-				75977DA91BF1F13D0084CFA1 /* FHICTAPI.m */,
+				75B46B7B1BF211EE000E3BE2 /* FontysClient.h */,
+				75B46B7C1BF211EE000E3BE2 /* FontysClient.m */,
 			);
 			path = Libraries;
 			sourceTree = "<group>";
@@ -441,7 +441,6 @@
 				751550151BF0E86C00C9CC59 /* User+CoreDataProperties.m in Sources */,
 				754F94731BCD52F600C0624C /* FHICTOAuth.m in Sources */,
 				757BBB431BE356AC00618C5A /* PersonTableViewController.m in Sources */,
-				75977DAA1BF1F13D0084CFA1 /* FHICTAPI.m in Sources */,
 				75F7E2FA1BF0F4B100BAEF19 /* ProfileTableViewController.m in Sources */,
 				756A28B91BC67F3E0088A921 /* PeopleTableViewController.m in Sources */,
 				75611DCC1BE1604A009544C0 /* PersonTableViewCell.m in Sources */,
@@ -449,6 +448,7 @@
 				758946131BC5484800798BBD /* LoginViewController.m in Sources */,
 				751550161BF0E86C00C9CC59 /* User.m in Sources */,
 				757785801BC5438900632BCE /* AppDelegate.m in Sources */,
+				75B46B7D1BF211EE000E3BE2 /* FontysClient.m in Sources */,
 				75CAFDC81BE8CC3700AF5AA8 /* G2SApi.m in Sources */,
 				757785891BC5438900632BCE /* Go2Study.xcdatamodeld in Sources */,
 				7577857D1BC5438900632BCE /* main.m in Sources */,

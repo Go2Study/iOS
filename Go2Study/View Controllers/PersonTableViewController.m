@@ -7,6 +7,7 @@
 //
 
 #import "PersonTableViewController.h"
+#import "User.h"
 
 @interface PersonTableViewController ()
 
@@ -26,15 +27,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = [NSString stringWithFormat:@"%@ %@", [self.person objectForKey:@"givenName"], [self.person objectForKey:@"surName"]];
+    self.title = [NSString stringWithFormat:@"%@ %@", self.user.firstName, self.user.lastName];
     
-    self.labelName.text       = [self.person objectForKey:@"displayName"];
-    self.labelTitle.text      = [self.person objectForKey:@"title"];
-    self.labelDepartment.text = [self.person objectForKey:@"department"];
+    self.labelName.text       = self.user.displayName;
+    self.labelTitle.text      = self.user.title;
+    self.labelDepartment.text = self.user.department;
     
-    self.labelOffice.text     = [self.person objectForKey:@"office"];
-    self.labelEmail.text      = [self.person objectForKey:@"mail"];
-    self.labelTelephone.text  = [self.person objectForKey:@"telephoneNumber"];
+    self.labelOffice.text     = self.user.office;
+    self.labelEmail.text      = self.user.mail;
+    self.labelTelephone.text  = self.user.phone;
 }
 
 

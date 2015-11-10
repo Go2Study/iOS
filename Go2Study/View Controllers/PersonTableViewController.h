@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class User;
 
 @interface PersonTableViewController : UITableViewController
 
-@property (nonatomic, strong) NSDictionary *person;
+@property (nonatomic, strong) User *user;
 
 @end

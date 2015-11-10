@@ -65,7 +65,7 @@
 
 - (NSString *)accessToken {
     if (!_accessToken) {
-        _accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"fhict-access-token"];
+        _accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"fhictAccessToken"];
     }
     
     return _accessToken;
@@ -73,7 +73,7 @@
 
 - (void)setAccessToken:(NSString *)accessToken {
     _accessToken = accessToken;
-    [[NSUserDefaults standardUserDefaults] setObject:accessToken forKey:@"fhict-access-token"];
+    [[NSUserDefaults standardUserDefaults] setObject:accessToken forKey:@"fhictAccessToken"];
 }
 
 #pragma mark - Public API

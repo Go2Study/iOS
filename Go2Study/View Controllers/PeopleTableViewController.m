@@ -13,15 +13,17 @@
 #import "FHICTOAuth.h"
 #import "AFNetworking.h"
 #import "UIImageView+AFNetworking.h"
-#import "User.h"
 #import "AppDelegate.h"
+#import "User.h"
+#import "FontysClient.h"
 
-@interface PeopleTableViewController ()
+@interface PeopleTableViewController () <FontysClientDelegate>
 
 @property (nonatomic, strong) G2SApi *g2sAPI;
 @property (nonatomic, strong) FHICTOAuth *fhictOAuth;
-@property (nonatomic, strong) AppDelegate *appDelegate;
 @property (nonatomic, strong) NSFetchedResultsController *peopleFetchedResultsController;
+@property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (nonatomic, strong) FontysClient *fontysClient;
 
 @end
 
@@ -62,10 +64,28 @@
         [fetchRequest setSortDescriptors:sortDescriptors];
         
         _peopleFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-                                                                              managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+                                                                              managedObjectContext:self.managedObjectContext
+                                                                                sectionNameKeyPath:nil
+                                                                                         cacheName:nil];
+    }
+    return _peopleFetchedResultsController;
+}
+
+- (FontysClient *)fontysClient {
+    if (!_fontysClient) {
+        _fontysClient = [FontysClient sharedClient];
+        _fontysClient.delegate = self;
+    }
+    return _fontysClient;
+}
+
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
+    if (!_persistentStoreCoordinator) {
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        _persistentStoreCoordinator = appDelegate.persistentStoreCoordinator;
     }
     
-    return _peopleFetchedResultsController;
+    return _persistentStoreCoordinator;
 }
 
 
@@ -73,7 +93,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self getStaff];
+    
+    [self.fontysClient getUsers];
+    
     self.tableView.delegate = self;
 }
 
@@ -90,12 +112,29 @@
     if (sender.selectedSegmentIndex == 0) {             // GET students
 //        [self getStudents];
     } else if (sender.selectedSegmentIndex == 1) {      // GET staff
-        [self getStaff];
+        [self.fontysClient getUsers];
     } else if (sender.selectedSegmentIndex == 2) {      // GET groups
         
     }
     
+    [self reloadData];
+}
+
+#pragma mark - Private
+
+- (void)reloadData {
+    NSError *error;
+    if (![self.peopleFetchedResultsController performFetch:&error]) {
+        NSLog(@"Perform Fetch Error: %@", [error localizedDescription]);
+    }
+    
     [self.tableView reloadData];
+}
+
+- (void)deleteData {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
+    NSBatchDeleteRequest *deleteRequest = [[NSBatchDeleteRequest alloc] initWithFetchRequest:fetchRequest];
+    [self.persistentStoreCoordinator executeRequest:deleteRequest withContext:self.managedObjectContext error:nil];
 }
 
 
@@ -121,7 +160,7 @@
     
     cell.name.text     = user.displayName;
     cell.subtitle.text = user.office;
-    cell.photo.image   = [UIImage imageWithData:user.photo];
+//    cell.photo.image   = [UIImage imageWithData:user.photo];
     
     return cell;
 }
@@ -131,84 +170,48 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showPerson"]) {
-//        PersonTableViewController *personTableViewController = [segue destinationViewController];
-//        personTableViewController.person = [self.people objectAtIndex:[[self.tableView indexPathForCell:sender] row]];
+        PersonTableViewController *personTableViewController = [segue destinationViewController];
+        personTableViewController.user = [self.peopleFetchedResultsController objectAtIndexPath:[self.tableView indexPathForCell:sender]];
     }
     
 }
 
+#pragma mark - FontysClientDelegate
 
-#pragma mark - API Operations
-
-- (void)getStaff {
-    NSURL *url = [[NSURL alloc] initWithString:@"people" relativeToURL:self.fhictOAuth.apiBaseURL];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request addValue:[NSString stringWithFormat:@"Bearer %@", self.fhictOAuth.accessToken] forHTTPHeaderField:@"Authorization"];
-
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+- (void)fontysClient:(FontysClient *)client didGetUsersData:(id)data {
+    NSArray *responseData = (NSArray *)data;
     
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSArray *response = (NSArray *)responseObject;
+    if (responseData) {
+        [self deleteData];
+    }
+    
+    for (NSDictionary *userDictionary in responseData) {
+        User *user = [NSEntityDescription insertNewObjectForEntityForName:@"User"
+                                                   inManagedObjectContext:self.managedObjectContext];
         
-        for (NSDictionary *userDictionary in response) {
-            User *user = [NSEntityDescription insertNewObjectForEntityForName:@"User"
-                                                       inManagedObjectContext:self.managedObjectContext];
-            
-            user.firstName   = [userDictionary valueForKey:@"givenName"];
-            user.lastName    = [userDictionary valueForKey:@"surName"];
-            user.displayName = [userDictionary valueForKey:@"displayName"];
-            user.initials    = [userDictionary valueForKey:@"initials"];
-            user.mail        = [userDictionary valueForKey:@"mail"];
-            user.office      = [userDictionary valueForKey:@"office"];
-            user.phone       = [userDictionary valueForKey:@"telephoneNumber"];
-            user.pcn         = [userDictionary valueForKey:@"id"];
-            user.title       = [userDictionary valueForKey:@"title"];
-            
-            // Download User Photo
-//            NSString *endpoint = [NSString stringWithFormat:@"pictures/%@/large", user.pcn];
-//            NSURL *url = [[NSURL alloc] initWithString:endpoint relativeToURL:self.fhictOAuth.apiBaseURL];
-//            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-//            [request addValue:[NSString stringWithFormat:@"Bearer %@", self.fhictOAuth.accessToken] forHTTPHeaderField:@"Authorization"];
-//            
-//            AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-//            operation.responseSerializer = [AFJSONResponseSerializer serializer];
-//            
-//            [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-//                user.photo = responseObject;
-//            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//                NSLog(@"Error: %@", error);
-//            }];
-            
-//            [operation start];
-            
-            NSError *error;
-            if (![self.managedObjectContext save:&error]) {
-                NSLog(@"Save Error: %@", [error localizedDescription]);
-            }
+        user.firstName   = [userDictionary valueForKey:@"givenName"];
+        user.lastName    = [userDictionary valueForKey:@"surName"];
+        user.displayName = [userDictionary valueForKey:@"displayName"];
+        user.initials    = [userDictionary valueForKey:@"initials"];
+        user.mail        = [userDictionary valueForKey:@"mail"];
+        user.office      = [userDictionary valueForKey:@"office"];
+        user.phone       = [userDictionary valueForKey:@"telephoneNumber"];
+        user.pcn         = [userDictionary valueForKey:@"id"];
+        user.title       = [userDictionary valueForKey:@"title"];
+        user.department  = [userDictionary valueForKey:@"department"];
+        user.type        = @"staff";
+        
+        NSError *error;
+        if (![self.managedObjectContext save:&error]) {
+            NSLog(@"Save Error: %@", [error localizedDescription]);
         }
-        
-        [self.tableView reloadData];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-    }];
+    }
     
-    [operation start];
+    [self reloadData];
 }
 
-- (void)setStaffPhotoForCell:(PersonTableViewCell *)personCell pcn:(NSString *)pcn {
-    NSString *endpoint = [NSString stringWithFormat:@"pictures/%@/large", pcn];
-    NSURL *url = [[NSURL alloc] initWithString:endpoint relativeToURL:self.fhictOAuth.apiBaseURL];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request addValue:[NSString stringWithFormat:@"Bearer %@", self.fhictOAuth.accessToken] forHTTPHeaderField:@"Authorization"];
-    
-    [personCell.photo setImageWithURLRequest:request
-                      placeholderImage:nil
-                               success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                                   personCell.photo.image = image;
-                                   [personCell setNeedsLayout];
-                               }
-                               failure:nil];
+- (void)fontysClient:(FontysClient *)client didFailWithError:(NSError *)error {
+    NSLog(@"%@", error);
 }
 
 @end

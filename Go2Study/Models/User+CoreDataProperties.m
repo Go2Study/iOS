@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.m
 //  Go2Study
 //
-//  Created by Ashish Kumar on 09/11/15.
+//  Created by Ashish Kumar on 10/11/15.
 //  Copyright © 2015 Go2Study. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -13,15 +13,17 @@
 
 @implementation User (CoreDataProperties)
 
-@dynamic firstName;
-@dynamic lastName;
 @dynamic displayName;
+@dynamic firstName;
 @dynamic initials;
+@dynamic lastName;
 @dynamic mail;
 @dynamic office;
+@dynamic pcn;
 @dynamic phone;
 @dynamic photo;
 @dynamic title;
-@dynamic pcn;
+@dynamic type;
+@dynamic department;
 
 @end
