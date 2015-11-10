@@ -55,15 +55,45 @@ static NSString * const apiBaseURLString = @"http://go2study.192.168.244.26.xip.
 }
 
 - (void)getUserForPCN:(NSString *)pcn {
-    
+    [self GET:[NSString stringWithFormat:@"users/%@", pcn]
+   parameters:nil
+      success:^(NSURLSessionDataTask *task, id responseObject) {
+          if ([self.delegate respondsToSelector:@selector(g2sClient:didGetUserData:forPCN:)]) {
+              [self.delegate g2sClient:self didGetUserData:responseObject forPCN:pcn];
+          }
+      } failure:^(NSURLSessionDataTask *task, NSError *error) {
+          if ([self.delegate respondsToSelector:@selector(g2sClient:didFailWithError:)]) {
+              [self.delegate g2sClient:self didFailWithError:error];
+          }
+      }];
 }
 
-- (void)postUsersWithData:(NSData *)data {
-    
+- (void)postUsersWithDictionary:(NSDictionary *)dictionary {
+    [self POST:@"users"
+    parameters:dictionary
+       success:^(NSURLSessionDataTask *task, id responseObject) {
+           if ([self.delegate respondsToSelector:@selector(g2sClient:didPostUserWithResponse:)]) {
+               [self.delegate g2sClient:self didPostUserWithResponse:responseObject];
+           }
+       } failure:^(NSURLSessionDataTask *task, NSError *error) {
+           if ([self.delegate respondsToSelector:@selector(g2sClient:didFailWithError:)]) {
+               [self.delegate g2sClient:self didFailWithError:error];
+           }
+       }];
 }
 
-- (void)putUserWithData:(NSData *)data forPCN:(NSString *)pcn {
-    
+- (void)putUserWithDictionary:(NSDictionary *)dictionary forPCN:(NSString *)pcn {
+    [self PUT:[NSString stringWithFormat:@"users/%@", pcn]
+   parameters:dictionary
+      success:^(NSURLSessionDataTask *task, id responseObject) {
+          if ([self.delegate respondsToSelector:@selector(g2sClient:didPutUserWithResponse:forPCN:)]) {
+              [self.delegate g2sClient:self didPutUserWithResponse:responseObject forPCN:pcn];
+          }
+      } failure:^(NSURLSessionDataTask *task, NSError *error) {
+          if ([self.delegate respondsToSelector:@selector(g2sClient:didFailWithError:)]) {
+              [self.delegate g2sClient:self didFailWithError:error];
+          }
+      }];
 }
 
 

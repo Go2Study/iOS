@@ -21,8 +21,8 @@
 #pragma mark Users
 - (void)getUsers;
 - (void)getUserForPCN:(NSString *)pcn;
-- (void)postUsersWithData:(NSData *)data;
-- (void)putUserWithData:(NSData *)data forPCN:(NSString *)pcn;
+- (void)postUsersWithDictionary:(NSDictionary *)dictionary;
+- (void)putUserWithDictionary:(NSDictionary *)dictionary forPCN:(NSString *)pcn;
 
 @end
 
@@ -35,7 +35,7 @@
 #pragma mark Users
 - (void)g2sClient:(G2SClient *)client didGetUsersData:(id)data;
 - (void)g2sClient:(G2SClient *)client didGetUserData:(id)data forPCN:(NSString *)pcn;
-- (void)g2sClient:(G2SClient *)client didPostUsersWithResponse:(id)response;
-- (void)g2sClient:(G2SClient *)client didPutUsersWithResponse:(id)response forPCN:(NSString *)pcn;
+- (void)g2sClient:(G2SClient *)client didPostUserWithResponse:(id)response;
+- (void)g2sClient:(G2SClient *)client didPutUserWithResponse:(id)response forPCN:(NSString *)pcn;
 
 @end
