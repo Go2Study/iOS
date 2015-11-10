@@ -137,6 +137,21 @@
     [self.persistentStoreCoordinator executeRequest:deleteRequest withContext:self.managedObjectContext error:nil];
 }
 
+- (void)setStaffPhotoForCell:(PersonTableViewCell *)personCell pcn:(NSString *)pcn {
+    NSString *endpoint = [NSString stringWithFormat:@"pictures/%@/large", pcn];
+    NSURL *url = [[NSURL alloc] initWithString:endpoint relativeToURL:self.fhictOAuth.apiBaseURL];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request addValue:[NSString stringWithFormat:@"Bearer %@", self.fhictOAuth.accessToken] forHTTPHeaderField:@"Authorization"];
+    
+    [personCell.photo setImageWithURLRequest:request
+                            placeholderImage:nil
+                                     success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                         personCell.photo.image = image;
+                                         [personCell setNeedsLayout];
+                                     }
+                                     failure:nil];
+}
+
 
 #pragma mark - Table view data source
 
@@ -157,6 +172,8 @@
     PersonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"personCell"];
     
     User *user = [self.peopleFetchedResultsController objectAtIndexPath:indexPath];
+    
+    [self setStaffPhotoForCell:cell pcn:user.pcn];
     
     cell.name.text     = user.displayName;
     cell.subtitle.text = user.office;
