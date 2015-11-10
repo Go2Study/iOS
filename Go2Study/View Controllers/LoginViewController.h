@@ -10,4 +10,6 @@
 
 @interface LoginViewController : UIViewController
 
+- (void)setUserProfile;
+
 @end

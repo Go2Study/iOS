@@ -10,7 +10,7 @@
 #import "FontysClient.h"
 @import SafariServices;
 
-@interface LoginViewController () <SFSafariViewControllerDelegate>
+@interface LoginViewController () <SFSafariViewControllerDelegate, FontysClientDelegate>
 
 @property (nonatomic, strong) FontysClient *fontysClient;
 @property (nonatomic, strong) SFSafariViewController *safariViewController;
@@ -24,7 +24,6 @@
     if (!_fontysClient) {
         _fontysClient = [FontysClient sharedClient];
     }
-    
     return _fontysClient;
 }
 
@@ -33,7 +32,6 @@
         _safariViewController = [[SFSafariViewController alloc] initWithURL:self.fontysClient.oauthURL];
         _safariViewController.delegate = self;
     }
-    
     return _safariViewController;
 }
 
@@ -44,7 +42,8 @@
     [super viewDidLoad];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(dismissSafariViewController) name:@"oauthDismissSafariViewController"
+                                             selector:@selector(oauthSuccessful)
+                                                 name:@"oauthSuccessful"
                                                object:nil];
 }
 
@@ -55,16 +54,45 @@
     [self presentViewController:self.safariViewController animated:YES completion:nil];
 }
 
+
+#pragma mark - Public
+
+- (void)setUserProfile {
+    // Get user's personal data
+    [self.fontysClient getUserForPCN:@"me"];
+    
+    // GET /users/(:pcn) to check if exists in database
+    
+    // If does not exist, POST
+}
+
+
 #pragma mark - Private
+
+- (void)oauthSuccessful {
+    [self dismissSafariViewController];
+}
 
 - (void)dismissSafariViewController {
     [self.safariViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
+
 #pragma mark - SFSafariViewControllerDelegate
 
 - (void)safariViewControllerDidFinish:(SFSafariViewController *)controller {
     [self dismissSafariViewController];
+}
+
+
+#pragma mark - FontysClientDelegate
+
+- (void)fontysClient:(FontysClient *)client didGetUserData:(id)data forPCN:(NSString *)pcn {
+    NSLog(@"%@", data);
+}
+
+- (void)fontysClient:(FontysClient *)client didFailWithError:(NSError *)error {
+    NSLog(@"%@", error);
 }
 
 @end

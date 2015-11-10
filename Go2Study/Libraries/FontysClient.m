@@ -97,11 +97,8 @@ static NSString * const apiBaseURLString = @"https://tas.fhict.nl:443/api/v1/";
     
     // !TODO: This needs to be stored in the keychain for security
     self.accessToken = [URLParameters objectForKey:@"access_token"];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"oauthDismissSafariViewController" object:nil];
-}
-
-- (BOOL)accessTokenExists {
-    return self.accessToken ? YES : NO;
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"authenticated"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"oauthSuccessful" object:nil];
 }
 
 

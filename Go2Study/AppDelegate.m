@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "FontysClient.h"
 #import "AFNetworkActivityIndicatorManager.h"
+#import "LoginViewController.h"
 
 @interface AppDelegate ()
 
@@ -153,11 +154,15 @@
 
 - (void)checkAuth {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *rootViewController  = [storyboard instantiateInitialViewController];
+    LoginViewController *loginViewController = (LoginViewController *)[storyboard instantiateViewControllerWithIdentifier:@"loginViewController"];
     
-    if ([self.fontysClient accessTokenExists]) {
-        self.window.rootViewController = [storyboard instantiateInitialViewController];
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"personalPCN"] && [[NSUserDefaults standardUserDefaults] boolForKey:@"authenticated"]) {
+        [loginViewController setUserProfile];
+    } else if ([[NSUserDefaults standardUserDefaults] objectForKey:@"personalPCN"] && [[NSUserDefaults standardUserDefaults] boolForKey:@"authenticated"]) {
+        self.window.rootViewController = rootViewController;
     } else {
-        self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"loginViewController"];
+        self.window.rootViewController = loginViewController;
     }
     
     [self.window makeKeyAndVisible];

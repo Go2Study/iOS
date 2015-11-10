@@ -24,7 +24,6 @@
 @property (nonatomic, strong) NSString *accessToken;
 
 - (void)saveAccessTokenForURL:(NSURL *)url;
-- (BOOL)accessTokenExists;
 
 #pragma mark Users
 - (void)getUsers;
