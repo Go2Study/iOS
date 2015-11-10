@@ -19,6 +19,14 @@
 + (FontysClient *)sharedClient;
 - (instancetype)initWithBaseURL:(NSURL *)url;
 
+#pragma mark - Access Token
+@property (nonatomic, strong) NSURL *oauthURL;
+@property (nonatomic, strong) NSURL *apiBaseURL;
+@property (nonatomic, strong) NSString *accessToken;
+
+- (void)saveAccessTokenForURL:(NSURL *)url;
+- (BOOL)accessTokenExists;
+
 #pragma mark - Users
 - (void)getUsers;
 - (void)getUserForPCN:(NSString *)pcn;

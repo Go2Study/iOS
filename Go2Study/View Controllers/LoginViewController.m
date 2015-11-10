@@ -7,12 +7,12 @@
 //
 
 #import "LoginViewController.h"
-#import "FHICTOAuth.h"
+#import "FontysClient.h"
 @import SafariServices;
 
 @interface LoginViewController () <SFSafariViewControllerDelegate>
 
-@property (nonatomic, strong) FHICTOAuth *fhictOAuth;
+@property (nonatomic, strong) FontysClient *fontysClient;
 @property (nonatomic, strong) SFSafariViewController *safariViewController;
 
 @end
@@ -20,17 +20,17 @@
 
 @implementation LoginViewController
 
-- (FHICTOAuth *)fhictOAuth {
-    if (!_fhictOAuth) {
-        _fhictOAuth = [[FHICTOAuth alloc] init];
+- (FontysClient *)fontysClient {
+    if (!_fontysClient) {
+        _fontysClient = [FontysClient sharedClient];
     }
     
-    return _fhictOAuth;
+    return _fontysClient;
 }
 
 - (SFSafariViewController *)safariViewController {
     if (!_safariViewController) {
-        _safariViewController = [[SFSafariViewController alloc] initWithURL:[self.fhictOAuth oauthURL]];
+        _safariViewController = [[SFSafariViewController alloc] initWithURL:self.fontysClient.oauthURL];
         _safariViewController.delegate = self;
     }
     
@@ -53,7 +53,6 @@
 
 - (IBAction)buttonOAuthLoginPressed:(UIButton *)sender {
     [self presentViewController:self.safariViewController animated:YES completion:nil];
-//    [[UIApplication sharedApplication] openURL:[self.fhictOAuth oauthURL]];
 }
 
 #pragma mark - Private

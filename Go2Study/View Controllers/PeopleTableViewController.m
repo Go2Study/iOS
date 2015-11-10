@@ -10,7 +10,6 @@
 #import "PersonTableViewCell.h"
 #import "PersonTableViewController.h"
 #import "G2SApi.h"
-#import "FHICTOAuth.h"
 #import "AFNetworking.h"
 #import "UIImageView+AFNetworking.h"
 #import "AppDelegate.h"
@@ -20,7 +19,6 @@
 @interface PeopleTableViewController () <FontysClientDelegate>
 
 @property (nonatomic, strong) G2SApi *g2sAPI;
-@property (nonatomic, strong) FHICTOAuth *fhictOAuth;
 @property (nonatomic, strong) NSFetchedResultsController *peopleFetchedResultsController;
 @property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (nonatomic, strong) FontysClient *fontysClient;
@@ -36,14 +34,6 @@
     }
     
     return _g2sAPI;
-}
-
-- (FHICTOAuth *)fhictOAuth {
-    if (!_fhictOAuth) {
-        _fhictOAuth = [[FHICTOAuth alloc] init];
-    }
-    
-    return _fhictOAuth;
 }
 
 - (NSManagedObjectContext *)managedObjectContext {
@@ -139,9 +129,9 @@
 
 - (void)setStaffPhotoForCell:(PersonTableViewCell *)personCell pcn:(NSString *)pcn {
     NSString *endpoint = [NSString stringWithFormat:@"pictures/%@/large", pcn];
-    NSURL *url = [[NSURL alloc] initWithString:endpoint relativeToURL:self.fhictOAuth.apiBaseURL];
+    NSURL *url = [[NSURL alloc] initWithString:endpoint relativeToURL:self.fontysClient.apiBaseURL];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request addValue:[NSString stringWithFormat:@"Bearer %@", self.fhictOAuth.accessToken] forHTTPHeaderField:@"Authorization"];
+    [request addValue:[NSString stringWithFormat:@"Bearer %@", self.fontysClient.accessToken] forHTTPHeaderField:@"Authorization"];
     
     [personCell.photo setImageWithURLRequest:request
                             placeholderImage:nil

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		751550151BF0E86C00C9CC59 /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 751550121BF0E86C00C9CC59 /* User+CoreDataProperties.m */; };
 		751550161BF0E86C00C9CC59 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 751550141BF0E86C00C9CC59 /* User.m */; };
-		754F94731BCD52F600C0624C /* FHICTOAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 754F94721BCD52F600C0624C /* FHICTOAuth.m */; };
 		75611DCC1BE1604A009544C0 /* PersonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75611DCB1BE1604A009544C0 /* PersonTableViewCell.m */; };
 		756A28B91BC67F3E0088A921 /* PeopleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 756A28B81BC67F3E0088A921 /* PeopleTableViewController.m */; };
 		7577857D1BC5438900632BCE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7577857C1BC5438900632BCE /* main.m */; };
@@ -55,8 +54,6 @@
 		751550121BF0E86C00C9CC59 /* User+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataProperties.m"; sourceTree = "<group>"; };
 		751550131BF0E86C00C9CC59 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		751550141BF0E86C00C9CC59 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		754F94711BCD52F600C0624C /* FHICTOAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FHICTOAuth.h; sourceTree = "<group>"; };
-		754F94721BCD52F600C0624C /* FHICTOAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FHICTOAuth.m; sourceTree = "<group>"; };
 		75611DCA1BE1604A009544C0 /* PersonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonTableViewCell.h; sourceTree = "<group>"; };
 		75611DCB1BE1604A009544C0 /* PersonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonTableViewCell.m; sourceTree = "<group>"; };
 		756A28B71BC67F3E0088A921 /* PeopleTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleTableViewController.h; sourceTree = "<group>"; };
@@ -130,8 +127,6 @@
 		754F94701BCD52C000C0624C /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				754F94711BCD52F600C0624C /* FHICTOAuth.h */,
-				754F94721BCD52F600C0624C /* FHICTOAuth.m */,
 				75CAFDC61BE8CC3700AF5AA8 /* G2SApi.h */,
 				75CAFDC71BE8CC3700AF5AA8 /* G2SApi.m */,
 				75B46B7B1BF211EE000E3BE2 /* FontysClient.h */,
@@ -439,7 +434,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				751550151BF0E86C00C9CC59 /* User+CoreDataProperties.m in Sources */,
-				754F94731BCD52F600C0624C /* FHICTOAuth.m in Sources */,
 				757BBB431BE356AC00618C5A /* PersonTableViewController.m in Sources */,
 				75F7E2FA1BF0F4B100BAEF19 /* ProfileTableViewController.m in Sources */,
 				756A28B91BC67F3E0088A921 /* PeopleTableViewController.m in Sources */,

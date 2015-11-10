@@ -10,10 +10,6 @@
 
 @interface FontysClient()
 
-@property (nonatomic, strong) NSURL *oauthURL;
-@property (nonatomic, strong) NSURL *apiBaseURL;
-@property (nonatomic, strong) NSString *accessToken;
-
 @end
 
 @implementation FontysClient
@@ -92,7 +88,7 @@ static NSString * const apiBaseURLString = @"https://tas.fhict.nl:443/api/v1/";
 
 #pragma mark - Access Token
 
-- (void)saveAccessToken:(NSURL *)url {
+- (void)saveAccessTokenForURL:(NSURL *)url {
     NSArray *URLComponents = [[url fragment] componentsSeparatedByString:@"&"];
     NSMutableDictionary *URLParameters = [[NSMutableDictionary alloc] init];
     

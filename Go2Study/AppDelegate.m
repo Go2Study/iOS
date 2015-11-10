@@ -7,23 +7,22 @@
 //
 
 #import "AppDelegate.h"
-#import "FHICTOAuth.h"
+#import "FontysClient.h"
 #import "AFNetworkActivityIndicatorManager.h"
 
 @interface AppDelegate ()
 
-@property (nonatomic, strong) FHICTOAuth *fhictOAuth;
+@property (nonatomic, strong) FontysClient *fontysClient;
 
 @end
 
 @implementation AppDelegate
 
-- (FHICTOAuth *)fhictOAuth {
-    if (!_fhictOAuth) {
-        _fhictOAuth = [[FHICTOAuth alloc] init];
+- (FontysClient *)fontysClient {
+    if (!_fontysClient) {
+        _fontysClient = [FontysClient sharedClient];
     }
-    
-    return _fhictOAuth;
+    return _fontysClient;
 }
 
 
@@ -60,7 +59,7 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(nonnull NSURL *)url options:(nonnull NSDictionary<NSString *,id> *)options {
     if ([[url scheme] isEqualToString:@"go2study"]) {
-        [self.fhictOAuth saveAccessToken:url];
+        [self.fontysClient saveAccessTokenForURL:url];
         [self checkAuth];
         
         return YES;
@@ -155,7 +154,7 @@
 - (void)checkAuth {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
-    if ([self.fhictOAuth confirmAuthStatus]) {
+    if ([self.fontysClient accessTokenExists]) {
         self.window.rootViewController = [storyboard instantiateInitialViewController];
     } else {
         self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"loginViewController"];
