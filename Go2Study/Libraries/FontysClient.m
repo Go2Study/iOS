@@ -8,10 +8,6 @@
 
 #import "FontysClient.h"
 
-@interface FontysClient()
-
-@end
-
 @implementation FontysClient
 
 #pragma mark - Constants
@@ -62,13 +58,12 @@ static NSString * const apiBaseURLString = @"https://tas.fhict.nl:443/api/v1/";
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSURL *url = [NSURL URLWithString:apiBaseURLString];
-        
         NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
         NSDictionary *headers = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"Bearer %@", accessToken] forKey:@"Authorization"];
         configuration.HTTPAdditionalHeaders = headers;
         
-        _sharedClient = [[self alloc] initWithBaseURL:url sessionConfiguration:configuration];
+        _sharedClient = [[self alloc] initWithBaseURL:[NSURL URLWithString:apiBaseURLString]
+                                 sessionConfiguration:configuration];
     });
     
     return _sharedClient;
@@ -140,5 +135,29 @@ static NSString * const apiBaseURLString = @"https://tas.fhict.nl:443/api/v1/";
       }];
 }
 
+#pragma mark - Images
+
+- (void)getUserImageForPCN:(NSString *)pcn {
+    NSString *endpoint = [NSString stringWithFormat:@"pictures/%@/large", pcn];
+    NSURL *url = [[NSURL alloc] initWithString:endpoint relativeToURL:self.apiBaseURL];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request addValue:[NSString stringWithFormat:@"Bearer %@", self.accessToken] forHTTPHeaderField:@"Authorization"];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFImageResponseSerializer serializer];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([self.delegate respondsToSelector:@selector(fontysClient:didGetUserImage:forPCN:)]) {
+            [self.delegate fontysClient:self didGetUserImage:responseObject forPCN:pcn];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if ([self.delegate respondsToSelector:@selector(fontysClient:didFailWithError:)]) {
+            [self.delegate fontysClient:self didFailWithError:error];
+        }
+    }];
+    
+    [operation start];
+}
 
 @end

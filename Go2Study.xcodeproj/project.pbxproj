@@ -22,7 +22,7 @@
 		757BBB431BE356AC00618C5A /* PersonTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 757BBB421BE356AC00618C5A /* PersonTableViewController.m */; };
 		758946131BC5484800798BBD /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 758946121BC5484800798BBD /* LoginViewController.m */; };
 		75B46B7D1BF211EE000E3BE2 /* FontysClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B46B7C1BF211EE000E3BE2 /* FontysClient.m */; };
-		75CAFDC81BE8CC3700AF5AA8 /* G2SApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CAFDC71BE8CC3700AF5AA8 /* G2SApi.m */; };
+		75B46B801BF252FF000E3BE2 /* G2SClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B46B7F1BF252FF000E3BE2 /* G2SClient.m */; };
 		75F7E2F41BF0F49300BAEF19 /* CalendarTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F7E2F31BF0F49300BAEF19 /* CalendarTableViewController.m */; };
 		75F7E2F71BF0F49E00BAEF19 /* MessagesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F7E2F61BF0F49E00BAEF19 /* MessagesTableViewController.m */; };
 		75F7E2FA1BF0F4B100BAEF19 /* ProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F7E2F91BF0F4B100BAEF19 /* ProfileTableViewController.m */; };
@@ -79,8 +79,8 @@
 		758946121BC5484800798BBD /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		75B46B7B1BF211EE000E3BE2 /* FontysClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontysClient.h; sourceTree = "<group>"; };
 		75B46B7C1BF211EE000E3BE2 /* FontysClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontysClient.m; sourceTree = "<group>"; };
-		75CAFDC61BE8CC3700AF5AA8 /* G2SApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = G2SApi.h; sourceTree = "<group>"; };
-		75CAFDC71BE8CC3700AF5AA8 /* G2SApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = G2SApi.m; sourceTree = "<group>"; };
+		75B46B7E1BF252FF000E3BE2 /* G2SClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = G2SClient.h; sourceTree = "<group>"; };
+		75B46B7F1BF252FF000E3BE2 /* G2SClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = G2SClient.m; sourceTree = "<group>"; };
 		75F7E2F21BF0F49300BAEF19 /* CalendarTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarTableViewController.h; sourceTree = "<group>"; };
 		75F7E2F31BF0F49300BAEF19 /* CalendarTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarTableViewController.m; sourceTree = "<group>"; };
 		75F7E2F51BF0F49E00BAEF19 /* MessagesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagesTableViewController.h; sourceTree = "<group>"; };
@@ -127,10 +127,10 @@
 		754F94701BCD52C000C0624C /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				75CAFDC61BE8CC3700AF5AA8 /* G2SApi.h */,
-				75CAFDC71BE8CC3700AF5AA8 /* G2SApi.m */,
 				75B46B7B1BF211EE000E3BE2 /* FontysClient.h */,
 				75B46B7C1BF211EE000E3BE2 /* FontysClient.m */,
+				75B46B7E1BF252FF000E3BE2 /* G2SClient.h */,
+				75B46B7F1BF252FF000E3BE2 /* G2SClient.m */,
 			);
 			path = Libraries;
 			sourceTree = "<group>";
@@ -436,6 +436,7 @@
 				751550151BF0E86C00C9CC59 /* User+CoreDataProperties.m in Sources */,
 				757BBB431BE356AC00618C5A /* PersonTableViewController.m in Sources */,
 				75F7E2FA1BF0F4B100BAEF19 /* ProfileTableViewController.m in Sources */,
+				75B46B801BF252FF000E3BE2 /* G2SClient.m in Sources */,
 				756A28B91BC67F3E0088A921 /* PeopleTableViewController.m in Sources */,
 				75611DCC1BE1604A009544C0 /* PersonTableViewCell.m in Sources */,
 				75F7E2F41BF0F49300BAEF19 /* CalendarTableViewController.m in Sources */,
@@ -443,7 +444,6 @@
 				751550161BF0E86C00C9CC59 /* User.m in Sources */,
 				757785801BC5438900632BCE /* AppDelegate.m in Sources */,
 				75B46B7D1BF211EE000E3BE2 /* FontysClient.m in Sources */,
-				75CAFDC81BE8CC3700AF5AA8 /* G2SApi.m in Sources */,
 				757785891BC5438900632BCE /* Go2Study.xcdatamodeld in Sources */,
 				7577857D1BC5438900632BCE /* main.m in Sources */,
 				75F7E2F71BF0F49E00BAEF19 /* MessagesTableViewController.m in Sources */,

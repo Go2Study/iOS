@@ -9,35 +9,29 @@
 #import "PeopleTableViewController.h"
 #import "PersonTableViewCell.h"
 #import "PersonTableViewController.h"
-#import "G2SApi.h"
 #import "AFNetworking.h"
 #import "UIImageView+AFNetworking.h"
 #import "AppDelegate.h"
 #import "User.h"
 #import "FontysClient.h"
+#import "G2SClient.h"
 
-@interface PeopleTableViewController () <FontysClientDelegate>
+@interface PeopleTableViewController () <FontysClientDelegate, G2SClientDelegate>
 
-@property (nonatomic, strong) G2SApi *g2sAPI;
 @property (nonatomic, strong) NSFetchedResultsController *staffFetchedResultsController;
 @property (nonatomic, strong) NSFetchedResultsController *studentsFetchedResultsController;
 @property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (nonatomic, strong) FontysClient *fontysClient;
+@property (nonatomic, strong) G2SClient *g2sClient;
 
 @end
 
 
 @implementation PeopleTableViewController
 
-NSString *currentDisplay = @"staff";
+#pragma mark - Property Initializers
 
-- (G2SApi *)g2sAPI {
-    if (!_g2sAPI) {
-        _g2sAPI = [[G2SApi alloc] init];
-    }
-    
-    return _g2sAPI;
-}
+NSString *currentDisplay = @"staff";
 
 - (NSManagedObjectContext *)managedObjectContext {
     if (!_managedObjectContext) {
@@ -75,7 +69,7 @@ NSString *currentDisplay = @"staff";
         NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:nameSortDescriptor, nil];
         [fetchRequest setSortDescriptors:sortDescriptors];
         
-        NSPredicate *staffPredicate = [NSPredicate predicateWithFormat:@"type == %@", @"student"];
+        NSPredicate *staffPredicate = [NSPredicate predicateWithFormat:@"type == %@", @"students"];
         [fetchRequest setPredicate:staffPredicate];
         
         _studentsFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
@@ -92,6 +86,14 @@ NSString *currentDisplay = @"staff";
         _fontysClient.delegate = self;
     }
     return _fontysClient;
+}
+
+- (G2SClient *)g2sClient {
+    if (!_g2sClient) {
+        _g2sClient = [G2SClient sharedClient];
+        _g2sClient.delegate = self;
+    }
+    return _g2sClient;
 }
 
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
@@ -113,6 +115,8 @@ NSString *currentDisplay = @"staff";
         [self.fontysClient getUsers];
     }
     
+//    [self.fontysClient getUsers];
+    
     self.tableView.delegate = self;
     [self reloadData];
 }
@@ -125,11 +129,9 @@ NSString *currentDisplay = @"staff";
 #pragma mark - Actions
 
 - (IBAction)segmentedControlValueChanged:(UISegmentedControl *)sender {
-//    self.people = nil;
-    
     if (sender.selectedSegmentIndex == 0) {             // GET students
         currentDisplay = @"students";
-//        [self getStudents];
+        [self.g2sClient getUsers];
     } else if (sender.selectedSegmentIndex == 1) {      // GET staff
         currentDisplay = @"staff";
         if (![[NSUserDefaults standardUserDefaults] boolForKey:@"hasDownloadedStaff"]) {
@@ -164,12 +166,14 @@ NSString *currentDisplay = @"staff";
 
 - (void)deleteUserData {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type == %@", currentDisplay];
+    [fetchRequest setPredicate:predicate];
     NSBatchDeleteRequest *deleteRequest = [[NSBatchDeleteRequest alloc] initWithFetchRequest:fetchRequest];
     [self.persistentStoreCoordinator executeRequest:deleteRequest withContext:self.managedObjectContext error:nil];
 }
 
-- (void)setStaffPhotoForCell:(PersonTableViewCell *)personCell pcn:(NSString *)pcn {
-    NSString *endpoint = [NSString stringWithFormat:@"pictures/%@/large", pcn];
+- (void)setStaffPhotoForCell:(PersonTableViewCell *)personCell user:(User *)user {
+    NSString *endpoint = [NSString stringWithFormat:@"pictures/%@/large", user.pcn];
     NSURL *url = [[NSURL alloc] initWithString:endpoint relativeToURL:self.fontysClient.apiBaseURL];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request addValue:[NSString stringWithFormat:@"Bearer %@", self.fontysClient.accessToken] forHTTPHeaderField:@"Authorization"];
@@ -177,6 +181,13 @@ NSString *currentDisplay = @"staff";
     [personCell.photo setImageWithURLRequest:request
                             placeholderImage:nil
                                      success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                         
+                                         user.photo = UIImageJPEGRepresentation(image, 1);
+                                         NSError *error;
+                                         if (![self.managedObjectContext save:&error]) {
+                                             NSLog(@"Save Error: %@", [error localizedDescription]);
+                                         }
+                                         
                                          personCell.photo.image = image;
                                          [personCell setNeedsLayout];
                                      }
@@ -215,13 +226,19 @@ NSString *currentDisplay = @"staff";
         
         cell.name.text = user.displayName;
         cell.subtitle.text = user.pcn;
+        cell.photo.image = nil;
     } else if ([currentDisplay isEqualToString:@"staff"]) {
         User *user = [self.staffFetchedResultsController objectAtIndexPath:indexPath];
         
-        [self setStaffPhotoForCell:cell pcn:user.pcn];
-        
         cell.name.text     = user.displayName;
         cell.subtitle.text = user.office;
+        
+        if (!user.photo) {
+            NSLog(@"downloading %@", user.pcn);
+            [self setStaffPhotoForCell:cell user:user];
+        } else {
+            cell.photo.image = [UIImage imageWithData:user.photo];
+        }
     } else if ([currentDisplay isEqualToString:@"groups"]) {
         
     }
@@ -235,7 +252,14 @@ NSString *currentDisplay = @"staff";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showPerson"]) {
         PersonTableViewController *personTableViewController = [segue destinationViewController];
-        personTableViewController.user = [self.staffFetchedResultsController objectAtIndexPath:[self.tableView indexPathForCell:sender]];
+        
+        if ([currentDisplay isEqualToString:@"students"]) {
+            personTableViewController.user = [self.studentsFetchedResultsController objectAtIndexPath:[self.tableView indexPathForCell:sender]];
+        } else if ([currentDisplay isEqualToString:@"staff"]) {
+            personTableViewController.user = [self.staffFetchedResultsController objectAtIndexPath:[self.tableView indexPathForCell:sender]];
+        } else if ([currentDisplay isEqualToString:@"groups"]) {
+            
+        }
     }
     
 }
@@ -275,7 +299,74 @@ NSString *currentDisplay = @"staff";
     [self reloadData];
 }
 
+- (void)fontysClient:(FontysClient *)client didGetUserImage:(UIImage *)image forPCN:(NSString *)pcn {
+    NSLog(@"imageForPCN: %@", pcn);
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"pcn == %@", pcn];
+    [fetchRequest setPredicate:predicate];
+    
+    NSSortDescriptor *nameSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"displayName" ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:nameSortDescriptor, nil];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                                                                               managedObjectContext:self.managedObjectContext
+                                                                                                 sectionNameKeyPath:nil
+                                                                                                          cacheName:nil];
+    [fetchedResultsController performFetch:nil];
+    NSArray *fetchedObjects = [fetchedResultsController fetchedObjects];
+    
+    User *user = fetchedObjects.firstObject;
+    user.photo = UIImageJPEGRepresentation(image, 1);
+    
+    NSError *error;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Save Error: %@", [error localizedDescription]);
+    }
+    
+    [self reloadData];
+}
+
 - (void)fontysClient:(FontysClient *)client didFailWithError:(NSError *)error {
+    NSLog(@"%@", error);
+}
+
+
+#pragma mark - G2SClientDelegate
+
+- (void)g2sClient:(G2SClient *)client didGetUsersData:(id)data {
+    NSArray *responseData = (NSArray *)data;
+    
+    if (responseData) {
+        [self deleteUserData];
+    }
+    
+    for (NSDictionary *userDictionary in responseData) {
+        User *user = [NSEntityDescription insertNewObjectForEntityForName:@"User"
+                                                   inManagedObjectContext:self.managedObjectContext];
+        
+        user.firstName   = [userDictionary valueForKey:@"first_name"];
+        user.lastName    = [userDictionary valueForKey:@"last_name"];
+        user.displayName = [userDictionary valueForKey:@"display_name"];
+        user.initials    = [userDictionary valueForKey:@"initials"];
+        user.mail        = [userDictionary valueForKey:@"mail"];
+        user.office      = [userDictionary valueForKey:@"office"];
+        user.phone       = [userDictionary valueForKey:@"phone"];
+        user.pcn         = [userDictionary valueForKey:@"pcn"];
+        user.department  = [userDictionary valueForKey:@"department"];
+        user.type        = @"students";
+        
+        NSError *error;
+        if (![self.managedObjectContext save:&error]) {
+            NSLog(@"Save Error: %@", [error localizedDescription]);
+        }
+    }
+    
+    [self reloadData];
+}
+
+- (void)g2sClient:(G2SClient *)client didFailWithError:(NSError *)error {
     NSLog(@"%@", error);
 }
 

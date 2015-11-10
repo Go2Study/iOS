@@ -80,7 +80,7 @@
                     <navigationItem key="navigationItem" id="auc-Qu-Suz">
                         <nil key="title"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="Gry-Gy-SDE">
-                            <rect key="frame" x="180" y="7" width="240" height="30"/>
+                            <rect key="frame" x="196" y="7" width="209" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <animations/>
                             <segments>
@@ -722,9 +722,6 @@
                                 <rect key="frame" x="242" y="285" width="117" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Login with FHICT"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="buttonOAuthLoginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Q2k-Un-fHh"/>
                                 </connections>
