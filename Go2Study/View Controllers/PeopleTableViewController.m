@@ -13,12 +13,15 @@
 #import "FHICTOAuth.h"
 #import "AFNetworking.h"
 #import "UIImageView+AFNetworking.h"
+#import "User.h"
+#import "AppDelegate.h"
 
 @interface PeopleTableViewController ()
 
-@property (nonatomic, strong) NSArray *people;
 @property (nonatomic, strong) G2SApi *g2sAPI;
 @property (nonatomic, strong) FHICTOAuth *fhictOAuth;
+@property (nonatomic, strong) AppDelegate *appDelegate;
+@property (nonatomic, strong) NSFetchedResultsController *peopleFetchedResultsController;
 
 @end
 
@@ -41,6 +44,30 @@
     return _fhictOAuth;
 }
 
+- (NSManagedObjectContext *)managedObjectContext {
+    if (!_managedObjectContext) {
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        _managedObjectContext = appDelegate.managedObjectContext;
+    }
+    
+    return _managedObjectContext;
+}
+
+- (NSFetchedResultsController *)peopleFetchedResultsController {
+    if (!_peopleFetchedResultsController) {
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
+        
+        NSSortDescriptor *nameSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"displayName" ascending:YES];
+        NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:nameSortDescriptor, nil];
+        [fetchRequest setSortDescriptors:sortDescriptors];
+        
+        _peopleFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                                                              managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    }
+    
+    return _peopleFetchedResultsController;
+}
+
 
 #pragma mark - UIViewController
 
@@ -58,7 +85,7 @@
 #pragma mark - Actions
 
 - (IBAction)segmentedControlValueChanged:(UISegmentedControl *)sender {
-    self.people = nil;
+//    self.people = nil;
     
     if (sender.selectedSegmentIndex == 0) {             // GET students
 //        [self getStudents];
@@ -79,18 +106,22 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.people count];
+    if ([[self.peopleFetchedResultsController sections] count] > 0) {
+        id <NSFetchedResultsSectionInfo> sectionInfo = [[self.peopleFetchedResultsController sections] objectAtIndex:section];
+        return [sectionInfo numberOfObjects];
+    }
+    
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PersonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"personCell"];
     
-    NSDictionary *person = [self.people objectAtIndex:[indexPath row]];
+    User *user = [self.peopleFetchedResultsController objectAtIndexPath:indexPath];
     
-    [self setStaffPhotoForCell:cell pcn:[person objectForKey:@"id"]];
-    
-    cell.name.text     = [person objectForKey:@"displayName"];
-    cell.subtitle.text = [person objectForKey:@"office"];
+    cell.name.text     = user.displayName;
+    cell.subtitle.text = user.office;
+    cell.photo.image   = [UIImage imageWithData:user.photo];
     
     return cell;
 }
@@ -100,31 +131,14 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showPerson"]) {
-        PersonTableViewController *personTableViewController = [segue destinationViewController];
-        personTableViewController.person = [self.people objectAtIndex:[[self.tableView indexPathForCell:sender] row]];
+//        PersonTableViewController *personTableViewController = [segue destinationViewController];
+//        personTableViewController.person = [self.people objectAtIndex:[[self.tableView indexPathForCell:sender] row]];
     }
     
 }
 
 
 #pragma mark - API Operations
-
-- (void)getStudents {
-    NSURL *url = [[NSURL alloc] initWithString:@"users" relativeToURL:self.g2sAPI.apiBaseURL];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    operation.responseSerializer = [AFJSONResponseSerializer serializer];
-    
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        self.people = (NSArray *)responseObject;
-        [self.tableView reloadData];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-    }];
-    
-    [operation start];
-}
 
 - (void)getStaff {
     NSURL *url = [[NSURL alloc] initWithString:@"people" relativeToURL:self.fhictOAuth.apiBaseURL];
@@ -133,9 +147,47 @@
 
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
-
+    
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        self.people = (NSArray *)responseObject;
+        NSArray *response = (NSArray *)responseObject;
+        
+        for (NSDictionary *userDictionary in response) {
+            User *user = [NSEntityDescription insertNewObjectForEntityForName:@"User"
+                                                       inManagedObjectContext:self.managedObjectContext];
+            
+            user.firstName   = [userDictionary valueForKey:@"givenName"];
+            user.lastName    = [userDictionary valueForKey:@"surName"];
+            user.displayName = [userDictionary valueForKey:@"displayName"];
+            user.initials    = [userDictionary valueForKey:@"initials"];
+            user.mail        = [userDictionary valueForKey:@"mail"];
+            user.office      = [userDictionary valueForKey:@"office"];
+            user.phone       = [userDictionary valueForKey:@"telephoneNumber"];
+            user.pcn         = [userDictionary valueForKey:@"id"];
+            user.title       = [userDictionary valueForKey:@"title"];
+            
+            // Download User Photo
+//            NSString *endpoint = [NSString stringWithFormat:@"pictures/%@/large", user.pcn];
+//            NSURL *url = [[NSURL alloc] initWithString:endpoint relativeToURL:self.fhictOAuth.apiBaseURL];
+//            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+//            [request addValue:[NSString stringWithFormat:@"Bearer %@", self.fhictOAuth.accessToken] forHTTPHeaderField:@"Authorization"];
+//            
+//            AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+//            operation.responseSerializer = [AFJSONResponseSerializer serializer];
+//            
+//            [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+//                user.photo = responseObject;
+//            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//                NSLog(@"Error: %@", error);
+//            }];
+            
+//            [operation start];
+            
+            NSError *error;
+            if (![self.managedObjectContext save:&error]) {
+                NSLog(@"Save Error: %@", [error localizedDescription]);
+            }
+        }
+        
         [self.tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);

@@ -122,7 +122,7 @@
         <!--Profile-->
         <scene sceneID="9C0-Cq-BgT">
             <objects>
-                <tableViewController id="0UQ-z5-oyJ" sceneMemberID="viewController">
+                <tableViewController id="0UQ-z5-oyJ" customClass="ProfileTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="mZk-C8-XMS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -563,7 +563,7 @@
         <!--Calendar-->
         <scene sceneID="SVL-1y-rvJ">
             <objects>
-                <tableViewController id="Iuh-Fh-CTS" sceneMemberID="viewController">
+                <tableViewController id="Iuh-Fh-CTS" customClass="CalendarTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="62" sectionHeaderHeight="28" sectionFooterHeight="28" id="84g-Uj-9AC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -641,7 +641,7 @@
         <!--Messages-->
         <scene sceneID="xYQ-uK-UBq">
             <objects>
-                <tableViewController id="7Tw-9p-l2F" sceneMemberID="viewController">
+                <tableViewController id="7Tw-9p-l2F" customClass="MessagesTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="lKc-2E-uIc">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
