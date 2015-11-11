@@ -7,25 +7,24 @@
 //
 
 #import "AppDelegate.h"
-#import "FontysClient.h"
 #import "AFNetworkActivityIndicatorManager.h"
 #import "LoginViewController.h"
 
 @interface AppDelegate ()
-
-@property (nonatomic, strong) FontysClient *fontysClient;
-
+@property (nonatomic, strong) LoginViewController *loginViewController;
 @end
 
 @implementation AppDelegate
 
-- (FontysClient *)fontysClient {
-    if (!_fontysClient) {
-        _fontysClient = [FontysClient sharedClient];
+- (LoginViewController *)loginViewController {
+    if (!_loginViewController) {
+        _loginViewController = (LoginViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"loginViewController"];
     }
-    return _fontysClient;
+    return _loginViewController;
 }
 
+
+#pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
@@ -60,7 +59,7 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(nonnull NSURL *)url options:(nonnull NSDictionary<NSString *,id> *)options {
     if ([[url scheme] isEqualToString:@"go2study"]) {
-        [self.fontysClient saveAccessTokenForURL:url];
+        [self.loginViewController oauthSuccessfulWithURL:url];
         [self checkAuth];
         
         return YES;
@@ -154,15 +153,11 @@
 
 - (void)checkAuth {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *rootViewController  = [storyboard instantiateInitialViewController];
-    LoginViewController *loginViewController = (LoginViewController *)[storyboard instantiateViewControllerWithIdentifier:@"loginViewController"];
     
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"personalPCN"] && [[NSUserDefaults standardUserDefaults] boolForKey:@"authenticated"]) {
-        [loginViewController setUserProfile];
-    } else if ([[NSUserDefaults standardUserDefaults] objectForKey:@"personalPCN"] && [[NSUserDefaults standardUserDefaults] boolForKey:@"authenticated"]) {
-        self.window.rootViewController = rootViewController;
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"authenticated"]) {
+        self.window.rootViewController = [storyboard instantiateInitialViewController];
     } else {
-        self.window.rootViewController = loginViewController;
+        self.window.rootViewController = self.loginViewController;
     }
     
     [self.window makeKeyAndVisible];

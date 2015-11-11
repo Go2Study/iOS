@@ -23,6 +23,7 @@
 - (FontysClient *)fontysClient {
     if (!_fontysClient) {
         _fontysClient = [FontysClient sharedClient];
+        _fontysClient.delegate = self;
     }
     return _fontysClient;
 }
@@ -40,11 +41,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(oauthSuccessful)
-                                                 name:@"oauthSuccessful"
-                                               object:nil];
 }
 
 
@@ -57,6 +53,20 @@
 
 #pragma mark - Public
 
+- (void)oauthSuccessfulWithURL:(NSURL *)url {
+    [self dismissSafariViewController];
+    [self saveAccessTokenForURL:url];
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"fhictAccessToken"] != nil) {
+        [self setUserProfile];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"authenticated"];
+    } else {
+        NSLog(@"no access token");
+    }
+}
+
+
+#pragma mark - Private
+
 - (void)setUserProfile {
     // Get user's personal data
     [self.fontysClient getUserForPCN:@"me"];
@@ -64,13 +74,25 @@
     // GET /users/(:pcn) to check if exists in database
     
     // If does not exist, POST
+    
+    
+    
 }
 
-
-#pragma mark - Private
-
-- (void)oauthSuccessful {
-    [self dismissSafariViewController];
+- (void)saveAccessTokenForURL:(NSURL *)url {
+    NSArray *URLComponents = [[url fragment] componentsSeparatedByString:@"&"];
+    NSMutableDictionary *URLParameters = [[NSMutableDictionary alloc] init];
+    
+    for (NSString *keyValuePair in URLComponents) {
+        NSArray *pairComponents = [keyValuePair componentsSeparatedByString:@"="];
+        NSString *key = [[pairComponents firstObject] stringByRemovingPercentEncoding];
+        NSString *value = [[pairComponents lastObject] stringByRemovingPercentEncoding];
+        
+        [URLParameters setObject:value forKey:key];
+    }
+    
+    // !TODO: This needs to be stored in the keychain for security
+    self.fontysClient.accessToken = [URLParameters objectForKey:@"access_token"];
 }
 
 - (void)dismissSafariViewController {
@@ -88,11 +110,11 @@
 #pragma mark - FontysClientDelegate
 
 - (void)fontysClient:(FontysClient *)client didGetUserData:(id)data forPCN:(NSString *)pcn {
-    NSLog(@"%@", data);
+    
 }
 
 - (void)fontysClient:(FontysClient *)client didFailWithError:(NSError *)error {
-    NSLog(@"%@", error);
+    NSLog(@"\n\n\n### LoginViewController::FontysClientDelegate ### \n%@", error);
 }
 
 @end

@@ -10,6 +10,6 @@
 
 @interface LoginViewController : UIViewController
 
-- (void)setUserProfile;
+- (void)oauthSuccessfulWithURL:(NSURL *)url;
 
 @end

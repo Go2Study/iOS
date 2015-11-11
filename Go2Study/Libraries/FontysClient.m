@@ -81,27 +81,6 @@ static NSString * const apiBaseURLString = @"https://tas.fhict.nl:443/api/v1/";
 }
 
 
-#pragma mark - Access Token
-
-- (void)saveAccessTokenForURL:(NSURL *)url {
-    NSArray *URLComponents = [[url fragment] componentsSeparatedByString:@"&"];
-    NSMutableDictionary *URLParameters = [[NSMutableDictionary alloc] init];
-    
-    for (NSString *keyValuePair in URLComponents) {
-        NSArray *pairComponents = [keyValuePair componentsSeparatedByString:@"="];
-        NSString *key = [[pairComponents firstObject] stringByRemovingPercentEncoding];
-        NSString *value = [[pairComponents lastObject] stringByRemovingPercentEncoding];
-        
-        [URLParameters setObject:value forKey:key];
-    }
-    
-    // !TODO: This needs to be stored in the keychain for security
-    self.accessToken = [URLParameters objectForKey:@"access_token"];
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"authenticated"];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"oauthSuccessful" object:nil];
-}
-
-
 #pragma mark - Users
 
 - (void)getUsers {

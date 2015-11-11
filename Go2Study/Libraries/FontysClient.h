@@ -23,8 +23,6 @@
 @property (nonatomic, strong) NSURL *apiBaseURL;
 @property (nonatomic, strong) NSString *accessToken;
 
-- (void)saveAccessTokenForURL:(NSURL *)url;
-
 #pragma mark Users
 - (void)getUsers;
 - (void)getUserForPCN:(NSString *)pcn;

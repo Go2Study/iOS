@@ -234,7 +234,6 @@ NSString *currentDisplay = @"staff";
         cell.subtitle.text = user.office;
         
         if (!user.photo) {
-            NSLog(@"downloading %@", user.pcn);
             [self setStaffPhotoForCell:cell user:user];
         } else {
             cell.photo.image = [UIImage imageWithData:user.photo];
@@ -300,8 +299,6 @@ NSString *currentDisplay = @"staff";
 }
 
 - (void)fontysClient:(FontysClient *)client didGetUserImage:(UIImage *)image forPCN:(NSString *)pcn {
-    NSLog(@"imageForPCN: %@", pcn);
-    
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"pcn == %@", pcn];
     [fetchRequest setPredicate:predicate];
@@ -329,7 +326,7 @@ NSString *currentDisplay = @"staff";
 }
 
 - (void)fontysClient:(FontysClient *)client didFailWithError:(NSError *)error {
-    NSLog(@"%@", error);
+    NSLog(@"\n\n\n### PeopleTableViewController::FontysClientDelegate ### \n%@", error);
 }
 
 
@@ -367,7 +364,7 @@ NSString *currentDisplay = @"staff";
 }
 
 - (void)g2sClient:(G2SClient *)client didFailWithError:(NSError *)error {
-    NSLog(@"%@", error);
+    NSLog(@"\n\n\n### PeopleTableViewController::G2SClientDelegate ### \n%@", error);
 }
 
 @end
