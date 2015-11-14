@@ -57,14 +57,20 @@ static NSString * const apiBaseURLString = @"https://tas.fhict.nl:443/api/v1/";
     NSString *accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"fhictAccessToken"];
     
     static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-        NSDictionary *headers = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"Bearer %@", accessToken] forKey:@"Authorization"];
-        configuration.HTTPAdditionalHeaders = headers;
-        
-        _sharedClient = [[self alloc] initWithBaseURL:[NSURL URLWithString:apiBaseURLString]
-                                 sessionConfiguration:configuration];
-    });
+    
+    // Don't create a singleton if we access token does not exist.
+    if (accessToken) {
+        dispatch_once(&onceToken, ^{
+            NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+            NSDictionary *headers = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"Bearer %@", accessToken] forKey:@"Authorization"];
+            configuration.HTTPAdditionalHeaders = headers;
+            
+            _sharedClient = [[self alloc] initWithBaseURL:[NSURL URLWithString:apiBaseURLString]
+                                     sessionConfiguration:configuration];
+        });
+    } else {
+        _sharedClient = [[self alloc] initWithBaseURL:[NSURL URLWithString:apiBaseURLString]];
+    }
     
     return _sharedClient;
 }

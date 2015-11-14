@@ -70,10 +70,8 @@
         [self saveAccessTokenForURL:url];
     }
     
-    
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"fhictAccessToken"] != nil) {
         [self.fontysClient getUserForPCN:@"me"];
-//        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"authenticated"];
     } else {
         NSLog(@"no access token");
     }
@@ -94,8 +92,9 @@
         [URLParameters setObject:value forKey:key];
     }
     
-    self.fontysClient = nil; // reset the object so we can store access token
-    self.fontysClient.accessToken = [URLParameters objectForKey:@"access_token"];
+    self.fontysClient = nil; // reset property so we can store access token
+    [[NSUserDefaults standardUserDefaults] setObject:[URLParameters objectForKey:@"access_token"] forKey:@"fhictAccessToken"];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"fhictAuthenticated"];
 }
 
 - (void)dismissSafariViewController {
@@ -115,7 +114,8 @@
 - (void)fontysClient:(FontysClient *)client didGetUserData:(id)data forPCN:(NSString *)pcn {
     NSString *personalPCN = [(NSDictionary *)data objectForKey:@"id"];
     [[NSUserDefaults standardUserDefaults] setObject:personalPCN forKey:@"personalPCN"];
-    [self.g2sClient getUserForPCN:personalPCN];
+//    NSDictionary *userDictionary = [[NSDictionary alloc] init];
+//    [self.g2sClient postUsersWithDictionary:userDictionary];
 }
 
 - (void)fontysClient:(FontysClient *)client didFailWithError:(NSError *)error {
@@ -126,13 +126,7 @@
 #pragma mark - G2SClientDelegate
 
 - (void)g2sClient:(G2SClient *)client didGetUserData:(id)data forPCN:(NSString *)pcn {
-    // If we get data, just proceed for now :)
-    NSDictionary *responseData = data;
-    if ([responseData objectForKey:@"error"] != nil && [[[responseData objectForKey:@"error"] objectForKey:@"code"] isEqualToNumber:[NSNumber numberWithInt:404]]) {
-//        self.g2sClient post
-    } else if (data != nil) {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"authenticated"];
-    }
+    
 }
 
 - (void)g2sClient:(G2SClient *)client didPostUserWithResponse:(id)response {

@@ -154,7 +154,7 @@
 - (void)checkAuth {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"authenticated"]) {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"fhictAuthenticated"]) {
         self.window.rootViewController = [storyboard instantiateInitialViewController];
     } else {
         self.window.rootViewController = self.loginViewController;
