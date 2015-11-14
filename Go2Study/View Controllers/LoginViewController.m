@@ -8,11 +8,13 @@
 
 #import "LoginViewController.h"
 #import "FontysClient.h"
+#import "G2SClient.h"
 @import SafariServices;
 
-@interface LoginViewController () <SFSafariViewControllerDelegate, FontysClientDelegate>
+@interface LoginViewController () <FontysClientDelegate, G2SClientDelegate, SFSafariViewControllerDelegate>
 
-@property (nonatomic, strong) FontysClient *fontysClient;
+@property (nonatomic, weak) FontysClient *fontysClient;
+@property (nonatomic, weak) G2SClient *g2sClient;
 @property (nonatomic, strong) SFSafariViewController *safariViewController;
 
 @end
@@ -26,6 +28,14 @@
         _fontysClient.delegate = self;
     }
     return _fontysClient;
+}
+
+- (G2SClient *)g2sClient {
+    if (!_g2sClient) {
+        _g2sClient = [G2SClient sharedClient];
+        _g2sClient.delegate = self;
+    }
+    return _g2sClient;
 }
 
 - (SFSafariViewController *)safariViewController {
@@ -55,10 +65,15 @@
 
 - (void)oauthSuccessfulWithURL:(NSURL *)url {
     [self dismissSafariViewController];
-    [self saveAccessTokenForURL:url];
+    
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"fhictAccessToken"] == nil) {
+        [self saveAccessTokenForURL:url];
+    }
+    
+    
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"fhictAccessToken"] != nil) {
-        [self setUserProfile];
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"authenticated"];
+        [self.fontysClient getUserForPCN:@"me"];
+//        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"authenticated"];
     } else {
         NSLog(@"no access token");
     }
@@ -66,18 +81,6 @@
 
 
 #pragma mark - Private
-
-- (void)setUserProfile {
-    // Get user's personal data
-    [self.fontysClient getUserForPCN:@"me"];
-    
-    // GET /users/(:pcn) to check if exists in database
-    
-    // If does not exist, POST
-    
-    
-    
-}
 
 - (void)saveAccessTokenForURL:(NSURL *)url {
     NSArray *URLComponents = [[url fragment] componentsSeparatedByString:@"&"];
@@ -91,7 +94,7 @@
         [URLParameters setObject:value forKey:key];
     }
     
-    // !TODO: This needs to be stored in the keychain for security
+    self.fontysClient = nil; // reset the object so we can store access token
     self.fontysClient.accessToken = [URLParameters objectForKey:@"access_token"];
 }
 
@@ -110,11 +113,34 @@
 #pragma mark - FontysClientDelegate
 
 - (void)fontysClient:(FontysClient *)client didGetUserData:(id)data forPCN:(NSString *)pcn {
-    
+    NSString *personalPCN = [(NSDictionary *)data objectForKey:@"id"];
+    [[NSUserDefaults standardUserDefaults] setObject:personalPCN forKey:@"personalPCN"];
+    [self.g2sClient getUserForPCN:personalPCN];
 }
 
 - (void)fontysClient:(FontysClient *)client didFailWithError:(NSError *)error {
     NSLog(@"\n\n\n### LoginViewController::FontysClientDelegate ### \n%@", error);
+}
+
+
+#pragma mark - G2SClientDelegate
+
+- (void)g2sClient:(G2SClient *)client didGetUserData:(id)data forPCN:(NSString *)pcn {
+    // If we get data, just proceed for now :)
+    NSDictionary *responseData = data;
+    if ([responseData objectForKey:@"error"] != nil && [[[responseData objectForKey:@"error"] objectForKey:@"code"] isEqualToNumber:[NSNumber numberWithInt:404]]) {
+//        self.g2sClient post
+    } else if (data != nil) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"authenticated"];
+    }
+}
+
+- (void)g2sClient:(G2SClient *)client didPostUserWithResponse:(id)response {
+    
+}
+
+- (void)g2sClient:(G2SClient *)client didFailWithError:(NSError *)error {
+    
 }
 
 @end

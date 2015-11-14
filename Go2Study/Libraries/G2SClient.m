@@ -11,7 +11,7 @@
 @implementation G2SClient
 
 #pragma mark - Constants
-static NSString * const apiBaseURLString = @"http://go2study.192.168.244.26.xip.io/";
+static NSString * const apiBaseURLString = @"http://go2study.dev/";
 
 #pragma mark - G2SClient
 

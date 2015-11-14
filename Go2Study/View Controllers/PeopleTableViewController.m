@@ -343,9 +343,9 @@ NSString *currentDisplay = @"staff";
         User *user = [NSEntityDescription insertNewObjectForEntityForName:@"User"
                                                    inManagedObjectContext:self.managedObjectContext];
         
-        user.firstName   = [userDictionary valueForKey:@"first_name"];
-        user.lastName    = [userDictionary valueForKey:@"last_name"];
-        user.displayName = [userDictionary valueForKey:@"display_name"];
+        user.firstName   = [userDictionary valueForKey:@"firstName"];
+        user.lastName    = [userDictionary valueForKey:@"lastName"];
+        user.displayName = [userDictionary valueForKey:@"displayName"];
         user.initials    = [userDictionary valueForKey:@"initials"];
         user.mail        = [userDictionary valueForKey:@"mail"];
         user.office      = [userDictionary valueForKey:@"office"];
