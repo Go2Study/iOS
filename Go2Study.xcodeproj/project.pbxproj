@@ -20,6 +20,7 @@
 		757785991BC5438900632BCE /* Go2StudyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 757785981BC5438900632BCE /* Go2StudyTests.m */; };
 		757785A41BC5438900632BCE /* Go2StudyUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 757785A31BC5438900632BCE /* Go2StudyUITests.m */; };
 		757BBB431BE356AC00618C5A /* PersonTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 757BBB421BE356AC00618C5A /* PersonTableViewController.m */; };
+		758548A61BFA41660051BBAA /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 758548A51BFA41660051BBAA /* Login.storyboard */; };
 		758946131BC5484800798BBD /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 758946121BC5484800798BBD /* LoginViewController.m */; };
 		75B46B7D1BF211EE000E3BE2 /* FontysClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B46B7C1BF211EE000E3BE2 /* FontysClient.m */; };
 		75B46B801BF252FF000E3BE2 /* G2SClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B46B7F1BF252FF000E3BE2 /* G2SClient.m */; };
@@ -75,6 +76,7 @@
 		757785A51BC5438900632BCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		757BBB411BE356AC00618C5A /* PersonTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonTableViewController.h; sourceTree = "<group>"; };
 		757BBB421BE356AC00618C5A /* PersonTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonTableViewController.m; sourceTree = "<group>"; };
+		758548A51BFA41660051BBAA /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		758946111BC5484800798BBD /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		758946121BC5484800798BBD /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		75B46B7B1BF211EE000E3BE2 /* FontysClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontysClient.h; sourceTree = "<group>"; };
@@ -138,6 +140,9 @@
 		75611DC91BE16016009544C0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7577858C1BC5438900632BCE /* LaunchScreen.storyboard */,
+				757785841BC5438900632BCE /* Main.storyboard */,
+				758548A51BFA41660051BBAA /* Login.storyboard */,
 				75611DCA1BE1604A009544C0 /* PersonTableViewCell.h */,
 				75611DCB1BE1604A009544C0 /* PersonTableViewCell.m */,
 			);
@@ -175,9 +180,7 @@
 				757785B11BC543EB00632BCE /* Models */,
 				7577857E1BC5438900632BCE /* AppDelegate.h */,
 				7577857F1BC5438900632BCE /* AppDelegate.m */,
-				757785841BC5438900632BCE /* Main.storyboard */,
 				7577858A1BC5438900632BCE /* Assets.xcassets */,
-				7577858C1BC5438900632BCE /* LaunchScreen.storyboard */,
 				7577858F1BC5438900632BCE /* Info.plist */,
 				757785871BC5438900632BCE /* Go2Study.xcdatamodeld */,
 				7577857B1BC5438900632BCE /* Supporting Files */,
@@ -358,6 +361,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				758548A61BFA41660051BBAA /* Login.storyboard in Resources */,
 				7577858E1BC5438900632BCE /* LaunchScreen.storyboard in Resources */,
 				7577858B1BC5438900632BCE /* Assets.xcassets in Resources */,
 				757785861BC5438900632BCE /* Main.storyboard in Resources */,
@@ -488,6 +492,7 @@
 				757785851BC5438900632BCE /* Base */,
 			);
 			name = Main.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		7577858C1BC5438900632BCE /* LaunchScreen.storyboard */ = {
@@ -496,6 +501,7 @@
 				7577858D1BC5438900632BCE /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

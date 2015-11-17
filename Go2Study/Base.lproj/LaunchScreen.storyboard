@@ -16,8 +16,33 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright © 2015-2016, Go2Study" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rea-d8-ysZ">
+                                <rect key="frame" x="202" y="559" width="197" height="21"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="yDS-9Z-npP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Go2Study iOS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WHm-YX-sBG">
+                                <rect key="frame" x="218" y="283" width="165" height="33"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="rea-d8-ysZ" firstAttribute="centerX" secondItem="WHm-YX-sBG" secondAttribute="centerX" id="QIc-LI-3uW"/>
+                            <constraint firstItem="WHm-YX-sBG" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="WcM-qS-rTD"/>
+                            <constraint firstItem="WHm-YX-sBG" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="nRN-7i-eQQ"/>
+                            <constraint firstAttribute="bottom" secondItem="rea-d8-ysZ" secondAttribute="bottom" constant="20" symbolic="YES" id="yf8-ib-82i"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>

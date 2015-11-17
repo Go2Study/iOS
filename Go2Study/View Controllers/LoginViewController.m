@@ -66,15 +66,11 @@
 - (void)oauthSuccessfulWithURL:(NSURL *)url {
     [self dismissSafariViewController];
     
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"fhictAccessToken"] == nil) {
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"fhictAccessToken"]) {
         [self saveAccessTokenForURL:url];
     }
     
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"fhictAccessToken"] != nil) {
-        [self.fontysClient getUserForPCN:@"me"];
-    } else {
-        NSLog(@"no access token");
-    }
+    [self.fontysClient getUserForPCN:@"me"];
 }
 
 

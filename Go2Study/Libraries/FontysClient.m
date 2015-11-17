@@ -7,6 +7,11 @@
 //
 
 #import "FontysClient.h"
+@import SafariServices;
+
+@interface FontysClient () <SFSafariViewControllerDelegate>
+@property (nonatomic, strong) SFSafariViewController *safariViewController;
+@end
 
 @implementation FontysClient
 
@@ -49,6 +54,14 @@ static NSString * const apiBaseURLString = @"https://tas.fhict.nl:443/api/v1/";
     [[NSUserDefaults standardUserDefaults] setObject:accessToken forKey:@"fhictAccessToken"];
 }
 
+- (SFSafariViewController *)safariViewController {
+    if (!_safariViewController) {
+        _safariViewController = [[SFSafariViewController alloc] initWithURL:self.oauthURL];
+        _safariViewController.delegate = self;
+    }
+    return _safariViewController;
+}
+
 
 #pragma mark - FontysClient
 
@@ -84,6 +97,13 @@ static NSString * const apiBaseURLString = @"https://tas.fhict.nl:443/api/v1/";
     }
     
     return self;
+}
+
+
+#pragma mark - OAuth
+
+- (void)presentLoginPage {
+    
 }
 
 
